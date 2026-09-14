@@ -21,8 +21,8 @@
 
 ## 📞 Байланыс
 Жоба бойынша сұрақтарыңыз болса немесе бірлесіп жұмыс істегіңіз келсе, маған хабарласыңыз:
-- **Электрондық пошта:** [toleanuar@gmail.com](mailto:toleanuar@gmail.com)
-- **GitHub:** [Менің профилім](https://github.com/toleanuar)
+- **Электрондық пошта:** [toleanuar704@gmail.com](mailto:toleanuar704@gmail.com)
+- **GitHub:** [Менің профилім](https://github.com/toleanuar06)
 
 ---
 *Бұл жоба оқу мақсатында және жеке тәжірибені шыңдау үшін жасалған.*
