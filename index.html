@@ -1,58 +1,80 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ануар Төле - Портфолио</title>
-    <!-- Google Fonts: Inter қарпін қосу -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио | Ануар Төле</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Ануар Төле</h1>
-            <p>Болашақ информатика мұғалімі & Веб-әзірлеуші</p>
-        </div>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active">Басты бет</a></li>
-            <li><a href="blog.html">Блог</a></li>
-            <li><a href="#contacts">Байланыс</a></li>
-        </ul>
+  <!-- Хедер: Логотип және мәзір -->
+  <header class="site-header">
+    <div class="logo">MyPortfolio</div>
+    <nav class="menu">
+      <a href="index.html" class="active">Басты бет</a>
+      <a href="blog.html">Блог</a>
     </nav>
+  </header>
 
-    <main>
-        <section id="about">
-            <h2>Мен туралы</h2>
-            <p>Сәлем! Мен Еуразия ұлттық университетінде (ЕНУ) «Информатика мұғалімдерін даярлау» мамандығының 4-ші курсында оқимын. Болашақ ұстаз ретінде технологиялар мен білім беруді ұштастырып, оқушыларға сапалы білім беруді мақсат етемін.</p>
-            <p>Қазіргі таңда бағдарламалық қамтамасыз етуді әзірлеу, жасанды интеллект құралдарын тиімді пайдалану және «вайб кодинг» (vibe coding) бағыттарын тереңірек зерттеп жатырмын.</p>
-        </section>
+  <!-- Негізгі бөлім -->
+  <main class="hero">
 
-        <section id="skills">
-            <h2>Дағдыларым мен мақсаттарым</h2>
-            <ul>
-                <li><strong>Веб-әзірлеу:</strong> HTML5, CSS3 және заманауи веб-технологиялар негіздері.</li>
-                <li><strong>Жасанды интеллект:</strong> Оқу процесі мен код жазуды оңтайландыру үшін AI құралдарын қолдану.</li>
-                <li><strong>Жобалар:</strong> 3-4 ай ішінде толыққанды веб-қосымша жасап, оны онлайн кеңістікке шығару.</li>
-                <li><strong>Жеке даму:</strong> Дикцияны жақсарту және көпшілік ортада еркін, сенімді сөйлеу дағдыларын қалыптастыру.</li>
-            </ul>
-        </section>
+    <!-- 1-бөлім: Визитка карточкасы -->
+    <section class="card">
+      <div class="card-left">
+        <h1>Ануар Төле</h1>
+        <p class="role">Web әзірлеуші (студент)</p>
+        <p class="desc">
+          Сәлем! Мен заманауи веб-технологиялар мен мобильді қосымшаларды әзірлеуге қызығамын. 
+          Ыңғайлы, әдемі әрі тиімді интерфейстер жасаумен айналысамын.
+        </p>
+        <div class="actions">
+          <a class="btn" href="blog.html">Блогымды көру</a>
+          <a class="btn outline" href="#contacts">Байланыс</a>
+        </div>
+      </div>
 
-        <section id="contacts">
-            <h2>Байланыс</h2>
-            <div class="contact-info">
-                <p>Егер сұрақтарыңыз болса немесе бірлесіп жұмыс істегіңіз келсе, маған хабарласыңыз:</p>
-                <p>Электрондық пошта: <strong><a href="mailto:toleanuar@gmail.com">toleanuar@gmail.com</a></strong></p>
-                <a href="https://t.me/your_telegram_username" class="btn">Telegram-ға жазу</a>
-            </div>
-        </section>
-    </main>
+      <div class="card-right">
+        <div class="avatar">
+          <!-- Фото блогы: Егер суретіңіз болса img/avatar.jpg етіп салыңыз, әзірше мәтін ретінде де тұра береді -->
+          <span>Фото</span>
+        </div>
+      </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
-    </footer>
+    <!-- 2-бөлім: Менің дағдыларым (Skills) -->
+    <section class="skills">
+      <h2>Менің дағдыларым</h2>
+      <div class="skill-list">
+        <div class="skill">HTML5</div>
+        <div class="skill">CSS3</div>
+        <div class="skill">Flexbox</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Git / GitHub</div>
+        <div class="skill">Python</div>
+        <div class="skill">Flutter</div>
+        <div class="skill">SQL</div>
+      </div>
+    </section>
+
+    <!-- 3-бөлім: Байланыс -->
+    <section id="contacts" class="contacts">
+      <h2>Байланыс</h2>
+      <ul>
+        <li><strong>Email:</strong> toleanuar@gmail.com</li>
+        <li><strong>Телефон:</strong> +7 (777) 123-45-67</li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/toleanuar06" target="_blank">github.com/toleanuar06</a></li>
+        <li><strong>Telegram:</strong> @toleanuar</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Футер -->
+  <footer class="site-footer">
+    <p>© 2026 Ануар Төле. Барлық құқық қорғалған.</p>
+  </footer>
+
 </body>
 </html>

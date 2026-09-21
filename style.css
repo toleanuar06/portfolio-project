@@ -1,179 +1,258 @@
-/* --- Жалпы баптаулар --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
-    color: #334155;
-    line-height: 1.7;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fcfcfc;
+  color: #333;
 }
 
-/* --- Header (Бас бөлік) --- */
-header {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    color: #ffffff;
-    padding: 4rem 2rem;
-    text-align: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+/* Header: логотип сол жақта, мәзір оң жақта */
+.site-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
 }
 
-.header-content h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.5px;
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111;
+  letter-spacing: 0.5px;
 }
 
-.header-content p {
-    font-size: 1.2rem;
-    color: #94a3b8;
-    font-weight: 400;
+.menu {
+  display: flex;
+  gap: 18px;
 }
 
-/* --- Навигация --- */
-nav {
-    background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.menu a {
+  text-decoration: none;
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+/* Қосымша тапсырма: мәзір сілтемелеріне :hover эффект */
+.menu a:hover,
+.menu a.active {
+  color: #000;
+  font-weight: 600;
 }
 
-nav a {
-    color: #64748b;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+/* Негізгі бөлік */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-nav a:hover, nav a.active {
-    color: #0f172a;
-    background-color: #f1f5f9;
+/* Карточка: сол жақта мәтін, оң жақта аватар */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Негізгі мазмұн (Main) --- */
-main {
-    flex: 1;
-    max-width: 800px;
-    width: 100%;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+.card-left {
+  flex: 2;
 }
 
-/* --- Бөлімдер (Section & Article) --- */
-section, article {
-    background-color: #ffffff;
-    padding: 2.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+.card-left h1 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  color: #1a202c;
 }
 
-h2 {
-    color: #0f172a;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #3b82f6;
-    display: inline-block;
+.role {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin: 0 0 12px 0;
+  font-weight: bold;
 }
 
-h3 {
-    color: #1e293b;
-    font-size: 1.2rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+.desc {
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-p {
-    margin-bottom: 1.2rem;
-    color: #475569;
+.card-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-/* Блогқа арналған уақыт тегі */
-time {
-    display: block;
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
+/* Аватар блогы */
+.avatar {
+  width: 140px;
+  height: 140px;
+  border: 2px dashed #a0aec0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7fafc;
+  color: #718096;
+  font-weight: bold;
+  overflow: hidden;
 }
 
-/* --- Тізімдер --- */
-ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-li {
-    margin-bottom: 0.5rem;
-    color: #475569;
-}
-
-strong {
-    color: #1e293b;
-}
-
-/* --- Сілтемелер мен Түймелер --- */
-a {
-    color: #3b82f6;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-a:hover {
-    color: #2563eb;
-    text-decoration: underline;
+/* Батырмалар */
+.actions {
+  display: flex;
+  gap: 12px;
 }
 
 .btn {
-    display: inline-block;
-    background-color: #3b82f6;
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 500;
-    margin-top: 1rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  text-decoration: none;
+  color: #fff;
+  background: #222;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
-    background-color: #2563eb;
-    text-decoration: none;
-    color: #ffffff;
+  background: #444;
+  border-color: #444;
 }
 
-/* --- Төменгі бөлік (Footer) --- */
-footer {
-    background-color: #ffffff;
-    color: #64748b;
+.btn.outline {
+  background: transparent;
+  color: #222;
+}
+
+.btn.outline:hover {
+  background: #f0f0f0;
+}
+
+/* Тапсырма 2: Skills бөлімі */
+.skills {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.skills h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+  color: #2d3748;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill {
+  background-color: #edf2f7;
+  color: #2d3748;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.skill:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+/* Байланыс бөлімі */
+.contacts {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.contacts h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 1.3rem;
+  color: #2d3748;
+}
+
+.contacts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contacts li {
+  color: #4a5568;
+}
+
+.contacts a {
+  color: #2b6cb0;
+  text-decoration: none;
+}
+
+.contacts a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.site-footer {
+  padding: 18px 20px;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+}
+
+/* Мобильді экран: карточка бағанға өтеді */
+@media (max-width: 650px) {
+  .card {
+    flex-direction: column-reverse;
+    align-items: center;
     text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid #e2e8f0;
-    margin-top: auto;
-}
+  }
 
-footer p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    text-align: center;
+  }
 }
