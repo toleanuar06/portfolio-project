@@ -1,258 +1,139 @@
-* {
-  box-sizing: border-box;
-}
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #fcfcfc;
-  color: #333;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
 }
 
-/* Header: логотип сол жақта, мәзір оң жақта */
-.site-header {
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e2e8f0;
-  background-color: #ffffff;
+/* Блог бөлімінің арнайы стильдері */
+.custom-blog-section {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #111;
-  letter-spacing: 0.5px;
+@media (max-width: 768px) {
+    .custom-blog-section {
+        flex-direction: column;
+    }
 }
 
-.menu {
-  display: flex;
-  gap: 18px;
+.blog-sidebar {
+    flex: 1;
+    min-width: 250px;
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 5rem;
 }
 
-.menu a {
-  text-decoration: none;
-  color: #4a5568;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-/* Қосымша тапсырма: мәзір сілтемелеріне :hover эффект */
-.menu a:hover,
-.menu a.active {
-  color: #000;
-  font-weight: 600;
-}
-
-/* Негізгі бөлік */
-.hero {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* Карточка: сол жақта мәтін, оң жақта аватар */
-.card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-  padding: 28px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.card-left {
-  flex: 2;
-}
-
-.card-left h1 {
-  margin: 0 0 8px 0;
-  font-size: 2rem;
-  color: #1a202c;
-}
-
-.role {
-  color: #4a5568;
-  font-size: 1.1rem;
-  margin: 0 0 12px 0;
-  font-weight: bold;
-}
-
-.desc {
-  color: #718096;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.card-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-/* Аватар блогы */
-.avatar {
-  width: 140px;
-  height: 140px;
-  border: 2px dashed #a0aec0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f7fafc;
-  color: #718096;
-  font-weight: bold;
-  overflow: hidden;
-}
-
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Батырмалар */
-.actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: 1px solid #222;
-  text-decoration: none;
-  color: #fff;
-  background: #222;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.btn:hover {
-  background: #444;
-  border-color: #444;
-}
-
-.btn.outline {
-  background: transparent;
-  color: #222;
-}
-
-.btn.outline:hover {
-  background: #f0f0f0;
-}
-
-/* Тапсырма 2: Skills бөлімі */
-.skills {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 24px;
-}
-
-.skills h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-size: 1.3rem;
-  color: #2d3748;
-}
-
-.skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skill {
-  background-color: #edf2f7;
-  color: #2d3748;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  border: 1px solid #e2e8f0;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.skill:hover {
-  background-color: #e2e8f0;
-  transform: translateY(-2px);
-}
-
-/* Байланыс бөлімі */
-.contacts {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 24px;
-}
-
-.contacts h2 {
-  margin-top: 0;
-  margin-bottom: 14px;
-  font-size: 1.3rem;
-  color: #2d3748;
-}
-
-.contacts ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contacts li {
-  color: #4a5568;
-}
-
-.contacts a {
-  color: #2b6cb0;
-  text-decoration: none;
-}
-
-.contacts a:hover {
-  text-decoration: underline;
-}
-
-/* Footer */
-.site-footer {
-  padding: 18px 20px;
-  border-top: 1px solid #e2e8f0;
-  text-align: center;
-  color: #a0aec0;
-  font-size: 0.9rem;
-  background-color: #ffffff;
-}
-
-/* Мобильді экран: карточка бағанға өтеді */
-@media (max-width: 650px) {
-  .card {
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
-  }
-
-  .actions {
-    flex-direction: column;
+.blog-category-btn {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-  }
+    padding: 0.75rem 0;
+    color: #9ca3af;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #374151;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+}
 
-  .btn {
+.blog-category-btn:hover, .blog-category-btn.active {
+    color: #60a5fa;
+}
+
+.blog-category-btn:last-child {
+    border-bottom: none;
+}
+
+.blog-main-content {
+    flex: 3;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.semantic-article {
+    background-color: #1f2937;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, opacity 0.4s ease;
+    border: 1px solid #374151;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.semantic-article:hover {
+    transform: translateY(-5px);
+    border-color: #60a5fa;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Күнтізбе стильдері */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #374151;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.calendar-day-header {
+    background-color: #111827;
+    color: #9ca3af;
     text-align: center;
-  }
+    padding: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.calendar-day {
+    background-color: #1f2937;
+    min-height: 100px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.calendar-day:hover {
+    background-color: #374151;
+}
+
+.calendar-day.empty {
+    background-color: #111827;
+    cursor: default;
+}
+
+.calendar-day .date-num {
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.has-plan-indicator {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    margin-top: 5px;
 }

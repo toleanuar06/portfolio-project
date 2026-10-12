@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Ануар Төле</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    
+    <!-- Навигация -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-2xl text-blue-500 tracking-wider">AT.</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Басты бет</a>
+                    <a href="blog.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Блог</a>
+                    <a href="portfolio.html" class="text-blue-400 border-b-2 border-blue-400 font-medium px-1 py-5">Портфолио</a>
+                    <a href="calendar.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Күнтізбе</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Тақырып -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-white mb-4">Менің Жобаларым</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Университеттегі оқуым мен жеке ізденістерім барысында жасаған негізгі жобаларым. Мұнда веб-әзірлеуден бастап, робототехника мен білім беру қосымшаларына дейінгі жұмыстарымды көре аласыз.</p>
+        </div>
+
+        <!-- Жобалар торы -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            
+            <!-- Жоба 1: AR Book -->
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="h-48 bg-gray-700 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-blue-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-vr-cardboard text-6xl text-white opacity-50"></i>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Дипломдық жоба</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-white mb-2">AR Book</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Толықтырылған шынайылық (AR) технологияларын білім саласында қолдану. Оқушылардың сабақты визуалды қабылдауын арттыруға арналған зерттеу жобасы.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">AR/VR</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">EdTech</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">3D Модельдеу</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="openProjectModal('arbook')" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none">Толық көру</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Жоба 2: Интерактивті Күнтізбе -->
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="h-48 bg-gray-700 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border-b border-gray-700">
+                        <i class="far fa-calendar-alt text-6xl text-gray-500 opacity-50"></i>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">Жеке тапсырма</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-white mb-2">Smart Lesson Planner</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Мұғалімдерге арналған интерактивті сабақ жоспарлау күнтізбесі. Жасанды интеллект (AI) арқылы автоматты түрде жоспар құру функциясы бар.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">JavaScript</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Tailwind CSS</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">LocalStorage</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <!-- Демо нұсқа күнтізбе бетіне апарады -->
+                        <a href="calendar.html" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors">Демо нұсқа</a>
+                        <!-- GitHub батырмасы жұмыс істейді -->
+                        <a href="https://github.com/toleanuar" target="_blank" class="w-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors" title="Кодты көру"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Жоба 3: IoT (Arduino) -->
+            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
+                <div class="h-48 bg-gray-700 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-900 to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <i class="fas fa-microchip text-6xl text-teal-500 opacity-50"></i>
+                    </div>
+                    <div class="absolute top-3 right-3 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">Аппараттық жасақтама</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-white mb-2">IoT Мектеп Қоңырауы</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">Arduino және ESP32 негізінде жасалған автоматты қоңырау жүйесі. Python арқылы ДК-мен байланысып, кесте бойынша жұмыс істейді.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Arduino (C++)</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Python 3.11</span>
+                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Wokwi</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="openProjectModal('iot')" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none">Схеманы көру</button>
+                        <!-- GitHub батырмасы жұмыс істейді -->
+                        <a href="https://github.com/toleanuar" target="_blank" class="w-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors" title="Кодты көру"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Кәсіби Дағдылар Бөлімі -->
+        <div class="border-t border-gray-800 pt-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Техникалық Дағдылар</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Менің меңгерген бағдарламалау тілдерім мен құралдарым.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center"><i class="fas fa-code text-blue-400 mr-3"></i> Бағдарламалау & Web</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Python 3.11</span> <span>80%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>HTML5 / CSS3 / JavaScript</span> <span>85%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Kotlin & Android Studio</span> <span>60%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center"><i class="fas fa-server text-blue-400 mr-3"></i> База, Желі & Құрылғылар</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>PostgreSQL / SQL</span> <span>75%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 75%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Cisco Packet Tracer (Желі)</span> <span>70%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 70%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Arduino / ESP32</span> <span>65%</span></div>
+                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 65%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ЖОБАЛАР ТУРАЛЫ МОДАЛЬДЫ ТЕРЕЗЕ -->
+    <div id="project-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[100] px-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-gray-800 rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto border border-gray-700 shadow-2xl transform scale-95 transition-transform duration-300 relative" id="project-modal-content">
+            <button id="close-project-modal" class="absolute top-5 right-6 text-gray-400 hover:text-white text-2xl focus:outline-none transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="p-8 md:p-10">
+                <span id="p-modal-tag" class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3 block">Категория</span>
+                <h2 id="p-modal-title" class="text-3xl font-bold text-white mb-6">Тақырып</h2>
+                
+                <div id="p-modal-body" class="text-gray-300 leading-relaxed space-y-4 text-base">
+                    <!-- Мазмұн осында түседі -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            <span class="font-bold text-2xl text-gray-700 mb-4">AT.</span>
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.
+            </p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    
+    <!-- Модальды басқаруға арналған скрипт -->
+    <script>
+        const projectData = {
+            'arbook': {
+                title: 'AR Book - Толықтырылған шынайылық',
+                tag: 'Дипломдық жоба',
+                content: '<p class="text-lg text-gray-200">Бұл жоба білім беру жүйесіне жаңа технологияларды енгізуге бағытталған. Толықтырылған шынайылық (AR) арқылы оқушылар күрделі нысандарды (мысалы, физикалық құбылыстар, биологиялық жасушалар) 3D форматында көре алады.</p><h4 class="text-white font-bold text-xl mt-6 mb-3">Жобаның негізгі мақсаттары:</h4><ul class="list-disc pl-5 text-gray-400 space-y-2"><li>Кітап бетіндегі арнайы маркерлерді камера арқылы тану;</li><li>Оқушыларға арналған интерактивті 3D модельдерді визуализациялау;</li><li>Материалды бекітуге арналған тест және сұрақ-жауап бөлімі.</li></ul>'
+            },
+            'iot': {
+                title: 'IoT Мектеп Қоңырауы',
+                tag: 'Аппараттық жасақтама',
+                content: '<p class="text-lg text-gray-200">Бұл жоба мектептегі қоңырау жүйесін толық автоматтандыруға арналған. Жүйе Arduino микроконтроллері және Wokwi симуляторы арқылы басқарылады.</p><h4 class="text-white font-bold text-xl mt-6 mb-3">Техникалық сипаттамасы:</h4><ul class="list-disc pl-5 text-gray-400 space-y-2"><li>Қоңырау кестесін Python 3.11 бағдарламасы арқылы басқару;</li><li>Жұмыс күндері мен демалыстарды автоматты түрде есепке алу (RTC модулі арқылы);</li><li>Дисплейге (LCD) келесі сабаққа дейінгі уақытты шығару;</li><li>ESP32 арқылы жүйені қашықтан бақылау мүмкіндігі.</li></ul>'
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('project-modal-content');
+        const closeBtn = document.getElementById('close-project-modal');
+
+        function openProjectModal(projectId) {
+            const data = projectData[projectId];
+            document.getElementById('p-modal-title').textContent = data.title;
+            document.getElementById('p-modal-tag').textContent = data.tag;
+            document.getElementById('p-modal-body').innerHTML = data.content;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        const closeModal = () => {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>

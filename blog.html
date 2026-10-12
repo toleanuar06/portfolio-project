@@ -4,57 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Блог - Ануар Төле</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <header>
-        <div class="header-content">
-            <h1>IT және Білім беру</h1>
-            <p>Технология, код жазу және өзін-өзі дамыту туралы жеке жазбаларым</p>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    
+    <!-- Навигация -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+        <!-- Навигация коды index.html-мен бірдей, тек "Блог" активті болып тұрады (text-blue-400) -->
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-xl text-blue-400">AT.</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Басты бет</a>
+                    <a href="blog.html" class="text-blue-400 font-medium px-3 py-2">Блог</a>
+                    <a href="portfolio.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Портфолио</a>
+                    <a href="calendar.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Күнтізбе</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Басты бет</a></li>
-            <li><a href="blog.html" class="active">Блог</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <article>
-            <h2>3 айлық мақсат: Нөлден қосымша жасау</h2>
-            <time datetime="2026-09-14">14 Қыркүйек 2026</time>
-            <p>Технологиялар әлемінде теорияны оқу бір бөлек, оны іс жүзінде қолдану мүлдем басқа. Мен өзім үшін үлкен мақсат қойдым: алдағы 3-4 айдың ішінде бағдарламалау мен жасанды интеллект негіздерін тереңірек меңгеріп, толыққанды жұмыс істейтін қосымша жасап шығу.</p>
-            <p>Бұл жолда маған «вайб кодинг» тәсілі көп көмектесуде. Код жазу процесін қиын жұмыс емес, шығармашылық процесс ретінде қабылдау өнімділікті арттырады. Жобамды онлайн кеңістікке шығарған кезде, оны міндетті түрде осы блогта бөлісетін боламын.</p>
-            <section>
-                <h3>Оқу жоспарымның негізгі бағыттары:</h3>
-                <ul>
-                    <li>Алгоритмдер мен деректер құрылымы</li>
-                    <li>Жасанды интеллект құралдарын интеграциялау</li>
-                    <li>Дайын өнімді интернетке орналастыру (Deployment)</li>
-                </ul>
-            </section>
-        </article>
-
-        <article>
-            <h2>Көпшілік алдында сөйлеу: Ұстаз үшін неге маңызды?</h2>
-            <time datetime="2026-09-10">10 Қыркүйек 2026</time>
-            <p>Информатика мұғалімі болу тек компьютерді жақсы білумен шектелмейді. Ең бастысы — біліміңді оқушыларға анық, түсінікті және қызықты етіп жеткізе білу. Сондықтан мен қазіргі уақытта кәсіби дағдыларыммен қатар, жұмсақ дағдыларымды (soft skills) дамытуға ерекше көңіл бөлудемін.</p>
-            <p>Көпшілік ортада сөйлеу кезіндегі ұялшақтықты жеңу және сөздерді нақты, дұрыс айту үшін дикциямен жұмыс істеп жатырмын. Күнделікті жаттығулар мен дауыстап оқу маған өз ойымды еркін жеткізуге сенімділік ұялатуда.</p>
-            <section>
-                <h3>Қолданатын әдістерім:</h3>
-                <ul>
-                    <li>Айна алдында сөйлеу жаттығулары</li>
-                    <li>Күрделі IT терминдерді қарапайым тілмен түсіндіру практикасы</li>
-                </ul>
-            </section>
-        </article>
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-3xl font-bold mb-8 text-white border-b border-gray-700 pb-4">Жеке Блог</h2>
+        
+        <div class="custom-blog-section">
+            <aside class="blog-sidebar">
+                <h3 class="text-lg font-semibold text-white mb-4 border-b border-gray-600 pb-2">Санаттар</h3>
+                <nav>
+                    <button class="blog-category-btn active text-blue-400" data-filter="all">Барлық жазбалар <span class="text-xs text-gray-500">(40)</span></button>
+                    <button class="blog-category-btn" data-filter="pedagogy">Педагогика <span>(12)</span></button>
+                    <button class="blog-category-btn" data-filter="it">IT-технологиялар <span>(8)</span></button>
+                    <button class="blog-category-btn" data-filter="programming">Бағдарламалау <span>(15)</span></button>
+                    <button class="blog-category-btn" data-filter="tips">Практикалық кеңестер <span>(5)</span></button>
+                </nav>
+            </aside>
+            <div class="blog-main-content">
+                <!-- Мақалалар script.js арқылы осында генерацияланады -->
+                <div class="blog-grid"></div>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+    <footer class="bg-gray-800 border-t border-gray-700 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-400 text-sm">
+            &copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.
+        </div>
     </footer>
+    <!-- Мақаланы толық оқуға арналған модаль (жаңадан қосылды) -->
+    <div id="article-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[100] px-4 transition-opacity duration-300 opacity-0">
+        <div class="bg-gray-800 rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto border border-gray-700 shadow-2xl transform scale-95 transition-transform duration-300 relative" id="article-modal-content">
+            <!-- Жабу батырмасы -->
+            <button id="close-article-modal" class="absolute top-5 right-6 text-gray-400 hover:text-white text-2xl focus:outline-none transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Мақала мазмұны -->
+            <div class="p-8 md:p-10">
+                <span id="modal-category" class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3 block">Категория</span>
+                <h2 id="modal-title" class="text-3xl font-bold text-white mb-4">Тақырып</h2>
+                <div class="text-sm text-gray-400 mb-8 pb-4 border-b border-gray-700">
+                    <i class="far fa-calendar-alt mr-2"></i> <span id="modal-date">Күні</span> • <i class="far fa-clock ml-2 mr-1"></i> 5 мин оқу
+                </div>
+                
+                <!-- Толық мәтін осында генерацияланады -->
+                <div id="modal-body" class="text-gray-300 leading-relaxed space-y-5 text-base">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

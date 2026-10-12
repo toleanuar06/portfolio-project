@@ -1,80 +1,193 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Портфолио | Ануар Төле</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Оңтайландыру (Google іздеу жүйесі үшін) -->
+    <meta name="description" content="Ануар Төле - Информатика мұғалімі және IT маманның жеке портфолиосы. Веб-бағдарламалау, робототехника және білім беру технологияларындағы (EdTech) жобалар.">
+    <meta name="keywords" content="Ануар Төле, портфолио, информатика мұғалімі, IT маман, веб-әзірлеуші, ЕҰУ студенті, Астана, AR Book, Python, HTML, CSS, JavaScript">
+    <meta name="author" content="Ануар Төле">
+    <title>Ануар Төле | Информатика мұғалімі & IT Маман - Портфолио</title>
+    
+    <!-- Қауіпсіз HTTPS сілтемелері -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-
-  <!-- Хедер: Логотип және мәзір -->
-  <header class="site-header">
-    <div class="logo">MyPortfolio</div>
-    <nav class="menu">
-      <a href="index.html" class="active">Басты бет</a>
-      <a href="blog.html">Блог</a>
-    </nav>
-  </header>
-
-  <!-- Негізгі бөлім -->
-  <main class="hero">
-
-    <!-- 1-бөлім: Визитка карточкасы -->
-    <section class="card">
-      <div class="card-left">
-        <h1>Ануар Төле</h1>
-        <p class="role">Web әзірлеуші (студент)</p>
-        <p class="desc">
-          Сәлем! Мен заманауи веб-технологиялар мен мобильді қосымшаларды әзірлеуге қызығамын. 
-          Ыңғайлы, әдемі әрі тиімді интерфейстер жасаумен айналысамын.
-        </p>
-        <div class="actions">
-          <a class="btn" href="blog.html">Блогымды көру</a>
-          <a class="btn outline" href="#contacts">Байланыс</a>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    
+    <!-- Навигация (UI/UX: Қарапайым әрі түсінікті мәзір) -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-2xl text-blue-500 tracking-wider">AT.</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-blue-400 border-b-2 border-blue-400 font-medium px-1 py-5" aria-current="page">Басты бет</a>
+                    <a href="blog.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Блог</a>
+                    <a href="portfolio.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Портфолио</a>
+                    <a href="calendar.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Күнтізбе</a>
+                </nav>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Мәзірді ашу">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="card-right">
-        <div class="avatar">
-          <!-- Фото блогы: Егер суретіңіз болса img/avatar.jpg етіп салыңыз, әзірше мәтін ретінде де тұра береді -->
-          <span>Фото</span>
+        <!-- Мобильді мәзір -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700 pb-3 px-4 shadow-lg absolute w-full">
+            <a href="index.html" class="block py-3 text-blue-400 font-medium border-b border-gray-700">Басты бет</a>
+            <a href="blog.html" class="block py-3 text-gray-300 hover:text-white border-b border-gray-700">Блог</a>
+            <a href="portfolio.html" class="block py-3 text-gray-300 hover:text-white border-b border-gray-700">Портфолио</a>
+            <a href="calendar.html" class="block py-3 text-gray-300 hover:text-white">Күнтізбе</a>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- 2-бөлім: Менің дағдыларым (Skills) -->
-    <section class="skills">
-      <h2>Менің дағдыларым</h2>
-      <div class="skill-list">
-        <div class="skill">HTML5</div>
-        <div class="skill">CSS3</div>
-        <div class="skill">Flexbox</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">Git / GitHub</div>
-        <div class="skill">Python</div>
-        <div class="skill">Flutter</div>
-        <div class="skill">SQL</div>
-      </div>
-    </section>
+    <!-- Негізгі контент -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col lg:flex-row gap-10 items-start">
+            
+            <!-- СОЛ ЖАҚ: Визитка / Профиль -->
+            <aside class="w-full lg:w-1/3 lg:sticky lg:top-24">
+                <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700 shadow-xl flex flex-col items-center text-center relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-blue-600 to-indigo-900 opacity-20"></div>
+                    
+                    <!-- Жүктелу жылдамдығын арттыру: loading="lazy" қосылды -->
+                    <!-- Профиль суреті анимациясымен (Қателік жөнделді) -->
+                    <div id="profile-img-container" class="w-32 h-32 bg-gray-900 rounded-full flex items-center justify-center mb-5 border-4 border-gray-800 shadow-[0_0_20px_rgba(59,130,246,0.3)] relative z-10 overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-110 group">
+                        <img src="profile-placeholder.jpeg" alt="Ануар Төле" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-full" id="profile-img">
+                        <!-- Қараңғы қабат (overlay) тек hover кезінде ғана көрінеді -->
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                             <i class="fas fa-search-plus text-white text-2xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- SEO: H1 тегі (Беттегі ең басты тақырып) -->
+                    <h1 class="text-3xl font-bold text-white mb-2 relative z-10">Ануар Төле</h1>
+                    <p class="text-blue-400 font-medium mb-4 relative z-10">Информатика мұғалімі & IT Маман</p>
+                    
+                    <div class="w-full bg-gray-900/50 rounded-xl p-4 mb-6 text-sm text-left border border-gray-700/50">
+                        <div class="flex items-center text-gray-300 mb-3">
+                            <i class="fas fa-envelope w-6 text-gray-400 text-center"></i>
+                            <a href="mailto:toleanuar@gmail.com" class="hover:text-blue-400 transition">toleanuar@gmail.com</a>
+                        </div>
+                        <div class="flex items-center text-gray-300 mb-3">
+                            <i class="fas fa-university w-6 text-gray-400 text-center"></i>
+                            <span>ЕҰУ, 4-курс студенті</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-map-marker-alt w-6 text-gray-400 text-center"></i>
+                            <span>Астана қ., Қазақстан</span>
+                        </div>
+                    </div>
 
-    <!-- 3-бөлім: Байланыс -->
-    <section id="contacts" class="contacts">
-      <h2>Байланыс</h2>
-      <ul>
-        <li><strong>Email:</strong> toleanuar@gmail.com</li>
-        <li><strong>Телефон:</strong> +7 (777) 123-45-67</li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/toleanuar06" target="_blank">github.com/toleanuar06</a></li>
-        <li><strong>Telegram:</strong> @toleanuar</li>
-      </ul>
-    </section>
+                    <!-- Байланыс (UX: Жылдам қол жетімділік) -->
+                    <div class="flex justify-center gap-4 w-full mb-6">
+                        <a href="https://github.com/toleanuar" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-[#333] hover:text-white transition shadow-lg hover:scale-110" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://t.me/your_telegram_username" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-[#0088cc] hover:text-white transition shadow-lg hover:scale-110" aria-label="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://wa.me/77079148337" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-300 hover:bg-[#25D366] hover:text-white transition shadow-lg hover:scale-110" aria-label="WhatsApp">
+                             <i class="fab fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
 
-  </main>
+                    <!-- UI/UX: Ашық, анық "Түйіндеме жүктеу" батырмасы -->
+                    <a href="cv.pdf" download="Anuar_Tole_CV.pdf" class="w-full block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-4 rounded-xl transition shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] transform hover:-translate-y-1 text-center">
+                        <i class="fas fa-download mr-2"></i> Түйіндемені жүктеу
+                    </a>
+                </div>
+            </aside>
 
-  <!-- Футер -->
-  <footer class="site-footer">
-    <p>© 2026 Ануар Төле. Барлық құқық қорғалған.</p>
-  </footer>
+            <!-- ОҢ ЖАҚ: Негізгі ақпарат -->
+            <div class="w-full lg:w-2/3 flex flex-col gap-10">
+                
+                <!-- SEO: H2 тегтері құрылымды түрде қолданылды -->
+                <section>
+                    <div class="flex items-center mb-6">
+                        <h2 class="text-3xl font-bold text-white relative inline-block">
+                            Мен туралы
+                            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-blue-500 rounded-full"></span>
+                        </h2>
+                    </div>
+                    <!-- Сапалы контент: Оқуға жеңіл, абзацтармен бөлінген мәтін -->
+                    <article class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-sm text-gray-300 leading-relaxed text-base">
+                        <p class="mb-4">
+                            Сәлем! Мен Л.Н. Гумилев атындағы Еуразия ұлттық университетінің «Информатика мұғалімі» мамандығының 4-курс студентімін. Мен білім беру саласында инновациялық технологияларды қолдануға, соның ішінде жасанды интеллект (AI) пен толықтырылған шынайылық (AR) құралдарын сабақ процесіне енгізуге ерекше қызығамын.
+                        </p>
+                        <p>
+                            Менің мақсатым – бағдарламалау мен робототехниканы оқушылар үшін түсінікті әрі қызықты етіп жеткізу, сонымен қатар заманауи IT жобаларды (веб, мобильді қосымшалар, IoT) өз бетімше әзірлеу.
+                        </p>
+                    </article>
+                </section>
 
+                <section>
+                    <div class="flex items-center mb-6">
+                        <h2 class="text-2xl font-bold text-white relative inline-block">
+                            Білімім
+                            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-blue-500 rounded-full"></span>
+                        </h2>
+                    </div>
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-sm relative pl-10">
+                        <div class="absolute left-4 top-8 bottom-8 w-0.5 bg-gray-600"></div>
+                        <div class="relative mb-6">
+                            <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-gray-800"></div>
+                            <span class="text-sm font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full mb-2 inline-block">2023 — Қазіргі уақыт</span>
+                            <h3 class="text-xl font-bold text-white mt-2">Информатика мұғалімі (Бакалавр)</h3>
+                            <p class="text-gray-400 text-sm mt-1">Л.Н. Гумилев атындағы Еуразия ұлттық университеті (ЕҰУ), Астана қ.</p>
+                            <p class="text-gray-400 mt-2 text-sm">4-ші курс студенті. Педагогика, бағдарламалау тілдері, мәліметтер базасы және компьютерлік желілер бағытында білім алудамын.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-white relative inline-block">
+                            Басты Жобалар
+                            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-blue-500 rounded-full"></span>
+                        </h2>
+                        <a href="portfolio.html" class="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors">Барлығын көру &rarr;</a>
+                    </div>
+                    
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 relative overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">Дипломдық жоба</div>
+                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">AR Book</h3>
+                        <p class="text-gray-400 text-sm mb-4">Толықтырылған шынайылық (AR) технологияларын білім саласында қолданудың негіздері. Оқушылардың сабақты визуалды қабылдауын арттыруға арналған зерттеу жобасы.</p>
+                        <!-- UI/UX: Анық навигация -->
+                        <a href="portfolio.html" class="inline-flex items-center text-sm font-medium text-white bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg transition-colors">Толық ақпарат</a>
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Суретті үлкейтіп көретін модаль -->
+    <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] px-4 cursor-pointer transition-opacity duration-300 opacity-0" aria-hidden="true">
+        <div class="relative max-w-3xl w-full flex justify-center">
+            <button id="close-image-modal" class="absolute -top-10 right-0 text-white hover:text-gray-300 focus:outline-none" aria-label="Жабу">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <img src="profile-placeholder.jpeg" alt="Ануар Төле үлкейтілген суреті" loading="lazy" class="max-h-[80vh] w-auto object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300" id="enlarged-img">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            <span class="font-bold text-2xl text-gray-700 mb-4">AT.</span>
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 Ануар Төле. Барлық құқықтар қорғалған. <br>
+                Жеке портфолио сайты.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
