@@ -328,4 +328,69 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    
 });
+/* =========================================
+   ПРАКТИКАЛЫҚ ЖҰМЫС №8 ФУНКЦИЯЛАРЫ
+========================================= */
+
+// Практикалық жұмыс 2: Сәлемдесу
+function sayHello() {
+    let name = document.getElementById("pr2-name").value;
+    if(name.trim() === "") {
+        alert("Өтінемін, атыңызды жазыңыз!");
+        return;
+    }
+    // Alert ретінде шығару (мұғалім талабы бойынша)
+    alert("Сәлем, " + name);
+    
+    // Сайтта да әдемі көрінуі үшін текст ретінде шығару
+    let resultEl = document.getElementById("pr2-result");
+    resultEl.textContent = "Сәлем, " + name + "!";
+    resultEl.classList.remove("hidden");
+}
+
+// Практикалық жұмыс 4: Form жасау (Аты және Жасы)
+function showInfo() {
+    let name = document.getElementById("pr4-username").value;
+    let age = document.getElementById("pr4-age").value;
+    
+    if(name.trim() === "" || age.trim() === "") {
+        alert("Барлық жолақтарды толтырыңыз!");
+        return;
+    }
+
+    let infoText = "Аты: " + name + "\nЖасы: " + age;
+    
+    // Alert ретінде шығару
+    alert(infoText);
+
+    // Сайтта шығару
+    let resultEl = document.getElementById("pr4-result");
+    resultEl.textContent = infoText;
+    resultEl.classList.remove("hidden");
+}
+
+// Үй жұмысы: Date және Color Picker
+function applyHomework() {
+    let selectedDate = document.getElementById("hw-date").value;
+    let selectedColor = document.getElementById("hw-color").value;
+
+    if(!selectedDate) {
+        alert("Күнді таңдаңыз!");
+        return;
+    }
+
+    let resultText = "Таңдалған күн: " + selectedDate + "\nТаңдалған түс: " + selectedColor;
+    
+    // Alert ретінде шығару
+    alert(resultText);
+
+    // Сайтта шығару
+    let resultEl = document.getElementById("hw-result");
+    resultEl.textContent = resultText;
+    resultEl.classList.remove("hidden");
+
+    // Түсті бүкіл сайтқа емес, тек сол карточкаға қолдану (дизайн бұзылмау үшін)
+    document.getElementById("hw-card").style.backgroundColor = selectedColor;
+}

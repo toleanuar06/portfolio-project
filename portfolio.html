@@ -111,6 +111,84 @@
             
         </div>
 
+        <!-- ПРАКТИКАЛЫҚ ЖҰМЫС №8 БӨЛІМІ -->
+        <div class="border-t border-gray-800 pt-16 mb-16">
+            
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- 1-тапсырма: Видео және Аудио (Мультимедиа) -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-lg">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-3"><i class="fas fa-play-circle text-blue-400 mr-2"></i> Мультимедиа (Видео және Аудио)</h3>
+                    
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-400 mb-2">Менің таныстырылым видеом:</p>
+                        <!-- Видео элементі -->
+                        <video class="w-full rounded-lg shadow-md border border-gray-700" controls poster="poster.jpg">
+                            <source src="video/presentation.mp4" type="video/mp4">
+                            <source src="video/presentation.webm" type="video/webm">
+                            Сіздің браузеріңіз HTML5 video тегін қолдамайды.
+                        </video>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-400 mb-2">Фондық әуен:</p>
+                        <!-- Аудио элементі -->
+                        <audio class="w-full" controls>
+                            <source src="audio/background-music.mp3" type="audio/mpeg">
+                            Сіздің браузеріңіз HTML5 audio тегін қолдамайды.
+                        </audio>
+                    </div>
+                </div>
+
+                <!-- 2, 3, 4 және Үй тапсырмалары: JS Формалары -->
+                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-lg transition-colors duration-300" id="hw-card">
+                    <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-3"><i class="fas fa-keyboard text-blue-400 mr-2"></i> Интерактивті Формалар (JS)</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Практика 2: Атын сұрау -->
+                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                            <p class="text-sm font-semibold text-blue-400 mb-2">Практика №2: Сәлемдесу</p>
+                            <div class="flex gap-3">
+                                <input type="text" id="pr2-name" placeholder="Атыңызды жазыңыз" class="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
+                                <button onclick="sayHello()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition">Көрсету</button>
+                            </div>
+                            <p id="pr2-result" class="text-green-400 text-sm mt-2 font-medium hidden"></p>
+                        </div>
+
+                        <!-- Практика 4: Аты мен Жасы -->
+                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                            <p class="text-sm font-semibold text-blue-400 mb-2">Практика №4: Мәлімет енгізу</p>
+                            <div class="grid grid-cols-2 gap-3 mb-3">
+                                <input type="text" id="pr4-username" placeholder="Аты" class="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
+                                <input type="number" id="pr4-age" placeholder="Жасы" class="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
+                            </div>
+                            <button onclick="showInfo()" class="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition">Мәліметті шығару</button>
+                            <p id="pr4-result" class="text-green-400 text-sm mt-2 font-medium hidden whitespace-pre-line"></p>
+                        </div>
+
+                        <!-- Үй жұмысы: Date & Color Picker -->
+                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+                            <p class="text-sm font-semibold text-purple-400 mb-2">Үй жұмысы: Date & Color Picker</p>
+                            <div class="flex items-center gap-4 mb-3">
+                                <div class="flex-1">
+                                    <label class="text-xs text-gray-400 block mb-1">Күн таңдаңыз:</label>
+                                    <input type="date" id="hw-date" class="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-purple-500 cursor-pointer">
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-400 block mb-1">Түс:</label>
+                                    <input type="color" id="hw-color" value="#1f2937" class="h-10 w-14 rounded cursor-pointer border-0 bg-transparent">
+                                </div>
+                            </div>
+                            <button onclick="applyHomework()" class="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg transition">Қолдану</button>
+                            <p id="hw-result" class="text-white text-sm mt-2 font-medium hidden whitespace-pre-line"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ПРАКТИКАЛЫҚ ЖҰМЫС БӨЛІМІНІҢ СОҢЫ -->
+
         <!-- Кәсіби Дағдылар Бөлімі -->
         <div class="border-t border-gray-800 pt-16">
             <div class="text-center mb-10">
