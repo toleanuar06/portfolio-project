@@ -598,3 +598,140 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+/* =========================================
+   ТАПСЫРМА: ТІРКЕЛУ ФОРМАСЫ ВАЛИДАЦИЯСЫ
+========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const regForm = document.getElementById("portfolio-reg-form");
+    if (!regForm) return;
+
+    const fnInput = document.getElementById("port-fullname");
+    const emInput = document.getElementById("port-email");
+    const pwInput = document.getElementById("port-password");
+
+    const fnErr = document.getElementById("port-fullname-err");
+    const emErr = document.getElementById("port-email-err");
+    const pwErr = document.getElementById("port-password-err");
+    const successBox = document.getElementById("port-success-box");
+
+    function isEmailValid(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    if (fnInput && fnErr) {
+        fnInput.addEventListener("input", () => {
+            if (fnInput.value.trim().length >= 2) {
+                fnErr.classList.add("hidden");
+                fnInput.classList.remove("border-red-500");
+                fnInput.classList.add("border-gray-700");
+            }
+        });
+    }
+
+    if (emInput && emErr) {
+        emInput.addEventListener("input", () => {
+            if (isEmailValid(emInput.value.trim())) {
+                emErr.classList.add("hidden");
+                emInput.classList.remove("border-red-500");
+                emInput.classList.add("border-gray-700");
+            }
+        });
+    }
+
+    if (pwInput && pwErr) {
+        pwInput.addEventListener("input", () => {
+            if (pwInput.value.length >= 8) {
+                pwErr.classList.add("hidden");
+                pwInput.classList.remove("border-red-500");
+                pwInput.classList.add("border-gray-700");
+            }
+        });
+    }
+
+    regForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        const fn = fnInput.value.trim();
+        const em = emInput.value.trim();
+        const pw = pwInput.value;
+
+        // Аты-жөнін тексеру
+        if (fn.length < 2) {
+            fnErr.classList.remove("hidden");
+            fnInput.classList.add("border-red-500");
+            valid = false;
+        } else {
+            fnErr.classList.add("hidden");
+            fnInput.classList.remove("border-red-500");
+        }
+
+        // Email тексеру
+        if (!isEmailValid(em)) {
+            emErr.classList.remove("hidden");
+            emInput.classList.add("border-red-500");
+            valid = false;
+        } else {
+            emErr.classList.add("hidden");
+            emInput.classList.remove("border-red-500");
+        }
+
+        // Құпиясөз тексеру (minlength="8")
+        if (pw.length < 8) {
+            pwErr.classList.remove("hidden");
+            pwInput.classList.add("border-red-500");
+            valid = false;
+        } else {
+            pwErr.classList.add("hidden");
+            pwInput.classList.remove("border-red-500");
+        }
+
+        if (valid) {
+            document.getElementById("port-res-name").textContent = fn;
+            document.getElementById("port-res-email").textContent = em;
+            successBox.classList.remove("hidden");
+            alert("Құттықтаймыз! Тіркелу сәтті аяқталды!\nАты-жөні: " + fn + "\nEmail: " + em);
+        } else {
+            successBox.classList.add("hidden");
+        }
+    });
+});
+
+// Portfolio бетіндегі сынақ батырмалары
+function testPortPasswordErr() {
+    const fn = document.getElementById("port-fullname");
+    const em = document.getElementById("port-email");
+    const pw = document.getElementById("port-password");
+    if (fn && em && pw) {
+        fn.value = "Ануар Төле";
+        em.value = "toleanuar@gmail.com";
+        pw.value = "12345"; // 5 таңба (< 8)
+        document.getElementById("port-submit-btn").click();
+    }
+}
+
+function testPortEmailErr() {
+    const fn = document.getElementById("port-fullname");
+    const em = document.getElementById("port-email");
+    const pw = document.getElementById("port-password");
+    if (fn && em && pw) {
+        fn.value = "Ануар Төле";
+        em.value = "anuar-mail-ru"; // @ жоқ
+        pw.value = "SecretPassword123!";
+        document.getElementById("port-submit-btn").click();
+    }
+}
+
+function testPortSuccess() {
+    const fn = document.getElementById("port-fullname");
+    const em = document.getElementById("port-email");
+    const pw = document.getElementById("port-password");
+    if (fn && em && pw) {
+        fn.value = "Ануар Төле";
+        em.value = "toleanuar@gmail.com";
+        pw.value = "SuperSecret2026!";
+        document.getElementById("port-submit-btn").click();
+    }
+}

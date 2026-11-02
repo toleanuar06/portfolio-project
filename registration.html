@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тіркелу формасы (Валидация) | Ануар Төле</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen font-sans">
+
+    <!-- Навигация -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <a href="portfolio.html" class="font-bold text-2xl text-blue-500 tracking-wider">AT.</a>
+                    <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full font-mono">Тіркелу формасы</span>
+                </div>
+                <nav class="flex items-center space-x-6">
+                    <a href="portfolio.html" class="text-gray-300 hover:text-white text-sm flex items-center gap-1.5 transition">
+                        <i class="fas fa-arrow-left text-xs"></i> Портфолиоға қайту
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Негізгі бөлім -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Тақырып -->
+        <div class="text-center mb-10">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
+                JavaScript & HTML5 Form Validation
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 mb-3">
+                Тапсырма: Тіркелу формасы
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                Форма құрылымы, өріс валидациялары (<code class="text-emerald-300">required</code>, <code class="text-emerald-300">type="email"</code>, <code class="text-emerald-300">minlength="8"</code>), <code class="text-emerald-300">submit</code> оқиғасын өңдеу және қате жағдайларын сынау.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            
+            <!-- СОЛ ЖАҚ (7 баған): Тіркелу формасы -->
+            <div class="lg:col-span-7 bg-gray-800 p-6 sm:p-8 rounded-2xl border border-gray-700 shadow-2xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                        <h2 class="text-xl font-bold text-white flex items-center">
+                            <i class="fas fa-user-plus text-emerald-400 mr-3"></i> Жаңа пайдаланушыны тіркеу
+                        </h2>
+                        <span class="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-mono">Form</span>
+                    </div>
+
+                    <!-- Тіркелу формасы -->
+                    <form id="registration-form" novalidate class="space-y-5">
+                        
+                        <!-- 1. Аты-жөні -->
+                        <div>
+                            <label for="fullname" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                <span><i class="fas fa-user text-emerald-400 mr-1.5"></i> Аты-жөні:</span>
+                                <span class="text-xs text-red-400">* міндетті өріс</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="fullname" 
+                                name="fullname" 
+                                required 
+                                minlength="2"
+                                placeholder="Мысалы: Ануар Төле" 
+                                class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition placeholder-gray-500"
+                            >
+                            <p id="fullname-error" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                <i class="fas fa-exclamation-circle"></i> <span>Аты-жөніңізді толық енгізіңіз (кемінде 2 таңба)</span>
+                            </p>
+                        </div>
+
+                        <!-- 2. Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                <span><i class="fas fa-envelope text-emerald-400 mr-1.5"></i> Электронды пошта (Email):</span>
+                                <span class="text-xs text-red-400">* type="email"</span>
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                placeholder="toleanuar@gmail.com" 
+                                class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition placeholder-gray-500"
+                            >
+                            <p id="email-error" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                <i class="fas fa-exclamation-circle"></i> <span>Дұрыс email форматын енгізіңіз (мысалы: name@example.com)</span>
+                            </p>
+                        </div>
+
+                        <!-- 3. Құпиясөз -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                <span><i class="fas fa-lock text-emerald-400 mr-1.5"></i> Құпиясөз:</span>
+                                <span class="text-xs text-red-400">* minlength="8"</span>
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    required 
+                                    minlength="8"
+                                    placeholder="Кемінде 8 таңбадан тұруы керек" 
+                                    class="w-full bg-gray-900 text-white pl-4 pr-11 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition placeholder-gray-500"
+                                >
+                                <button type="button" id="toggle-password-btn" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition px-1" title="Құпиясөзді көрсету / жасыру">
+                                    <i class="fas fa-eye" id="toggle-password-icon"></i>
+                                </button>
+                            </div>
+                            <p id="password-error" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                <i class="fas fa-exclamation-circle"></i> <span>Құпиясөз тым қысқа! Кемінде 8 таңба болуы шарт.</span>
+                            </p>
+                            <!-- Ұзындық индикаторы -->
+                            <div class="mt-2 flex items-center gap-2">
+                                <div class="flex-1 bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                                    <div id="password-strength-bar" class="h-full bg-red-500 w-0 transition-all duration-300"></div>
+                                </div>
+                                <span id="password-char-count" class="text-xs text-gray-400 font-mono">0 / 8 таңба</span>
+                            </div>
+                        </div>
+
+                        <!-- Submit батырмасы -->
+                        <div class="pt-2">
+                            <button 
+                                type="submit" 
+                                id="submit-btn" 
+                                class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 text-base"
+                            >
+                                <i class="fas fa-check-circle"></i> Тіркелу (Submit)
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Сәтті тексерілгенде шығатын хабарлама (Success Box) -->
+                <div id="success-box" class="hidden mt-6 p-5 rounded-xl bg-emerald-950/40 border-2 border-emerald-500 transition-all duration-300">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 text-xl">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-emerald-400 mb-1">Құттықтаймыз! Сіз сәтті тіркелдіңіз!</h3>
+                            <p class="text-xs text-gray-300 mb-3">Барлық өрістер тексеруден (валидациядан) қатесіз өтті:</p>
+                            <div class="bg-gray-900/80 p-3 rounded-lg text-xs space-y-1 font-mono border border-gray-700">
+                                <p><span class="text-gray-400">Пайдаланушы:</span> <strong class="text-white" id="success-name">...</strong></p>
+                                <p><span class="text-gray-400">Email:</span> <strong class="text-emerald-400" id="success-email">...</strong></p>
+                                <p><span class="text-gray-400">Құпиясөз:</span> <strong class="text-gray-300">•••••••• (жасырын)</strong></p>
+                                <p><span class="text-gray-400">Уақыты:</span> <span class="text-gray-400" id="success-time">...</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ОҢ ЖАҚ (5 баған): Қате жағдайларын сынау батырмалары -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <!-- Тестілеу блогы -->
+                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
+                    <h3 class="text-lg font-bold text-white mb-2 flex items-center">
+                        <i class="fas fa-vial text-purple-400 mr-2"></i> Қате жағдайларын сынау
+                    </h3>
+                    <p class="text-xs text-gray-400 mb-4">
+                        Тапсырма шарты: <em>«Кемінде екі қате жағдайды сынау»</em>. Төмендегі батырмаларды басып, әртүрлі сценарийлерді бірден тексеріп көре аласыз:
+                    </p>
+
+                    <div class="space-y-3">
+                        <!-- 1-қате жағдай: Құпиясөз қысқа -->
+                        <button 
+                            type="button" 
+                            onclick="testErrorPassword()" 
+                            class="w-full text-left p-3.5 rounded-xl bg-gray-900/80 hover:bg-red-950/30 border border-gray-700 hover:border-red-500/50 transition group"
+                        >
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fas fa-times-circle"></i> 1-қате жағдай
+                                </span>
+                                <span class="text-[11px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded border border-red-500/20">minlength &lt; 8</span>
+                            </div>
+                            <p class="text-xs text-gray-300">Құпиясөз 8 таңбадан қысқа ("12345" енгізу)</p>
+                        </button>
+
+                        <!-- 2-қате жағдай: Email форматы қате -->
+                        <button 
+                            type="button" 
+                            onclick="testErrorEmail()" 
+                            class="w-full text-left p-3.5 rounded-xl bg-gray-900/80 hover:bg-amber-950/30 border border-gray-700 hover:border-amber-500/50 transition group"
+                        >
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fas fa-times-circle"></i> 2-қате жағдай
+                                </span>
+                                <span class="text-[11px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">invalid email</span>
+                            </div>
+                            <p class="text-xs text-gray-300">Email форматы қате ("anuar-mail-ru", @ белгісі жоқ)</p>
+                        </button>
+
+                        <!-- 3-қате жағдай: Аты-жөні өрісі бос -->
+                        <button 
+                            type="button" 
+                            onclick="testErrorEmptyName()" 
+                            class="w-full text-left p-3.5 rounded-xl bg-gray-900/80 hover:bg-purple-950/30 border border-gray-700 hover:border-purple-500/50 transition group"
+                        >
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fas fa-times-circle"></i> 3-қате жағдай
+                                </span>
+                                <span class="text-[11px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded border border-purple-500/20">required бос</span>
+                            </div>
+                            <p class="text-xs text-gray-300">Аты-жөні өрісін бос қалдыру</p>
+                        </button>
+
+                        <!-- Сәтті жағдай -->
+                        <button 
+                            type="button" 
+                            onclick="testSuccessCase()" 
+                            class="w-full text-left p-3.5 rounded-xl bg-gray-900/80 hover:bg-emerald-950/30 border border-gray-700 hover:border-emerald-500/50 transition group"
+                        >
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle"></i> Сәтті жағдай
+                                </span>
+                                <span class="text-[11px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20">барлығы дұрыс</span>
+                            </div>
+                            <p class="text-xs text-gray-300">Барлық өрістерге дұрыс мәндерді автоматты толтыру</p>
+                        </button>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-gray-700 flex justify-end">
+                        <button type="button" onclick="resetRegistrationForm()" class="text-xs text-gray-400 hover:text-white transition flex items-center gap-1">
+                            <i class="fas fa-undo text-[10px]"></i> Форманы тазарту
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ТҮСІНДІРМЕ БӨЛІМІ (ТАПСЫРУ ФОРМАТЫНЫҢ ТАЛАБЫ) -->
+        <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl mb-12">
+            <div class="flex items-center gap-3 border-b border-gray-700 pb-4 mb-6">
+                <i class="fas fa-clipboard-check text-emerald-400 text-2xl"></i>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Қысқаша түсіндірме: қандай тексерулер орындалды?</h2>
+                    <p class="text-sm text-gray-400">Форманы өңдеуде және валидацияда жүзеге асырылған негізгі талаптар</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700">
+                    <h3 class="text-base font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">1</span>
+                        Міндеттілік тексеруі (required)
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        HTML5-те барлық өрістерге (<code class="text-emerald-300">fullname</code>, <code class="text-emerald-300">email</code>, <code class="text-emerald-300">password</code>) <code class="text-yellow-400">required</code> атрибуты орнатылған. Сондай-ақ JavaScript деңгейінде өрістердің бос орынмен толтырылмағаны (<code class="text-gray-300 font-mono text-xs">value.trim() === ""</code>) тексеріледі.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700">
+                    <h3 class="text-base font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">2</span>
+                        Email пішімін тексеру (type="email")
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Email үшін <code class="text-yellow-400">type="email"</code> түрі тағайындалған. JavaScript қосымша түрде тұрақты өрнек (RegEx) арқылы электрондық поштаның толық құрылымын (<code class="text-gray-300 font-mono text-xs">name@domain.zone</code>) және <code class="text-emerald-300">@</code> белгісі мен нүктенің бар-жоғын қадағалайды.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700">
+                    <h3 class="text-base font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">3</span>
+                        Құпиясөз ұзындығын тексеру (minlength="8")
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Құпиясөз өрісіне <code class="text-yellow-400">minlength="8"</code> атрибуты берілген. Егер пайдаланушы 8 символдан аз енгізсе, форма жіберілмейді және қызыл түспен «Құпиясөз тым қысқа! Кемінде 8 таңба болуы шарт» деген ескерту шығады.
+                    </p>
+                </div>
+
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700">
+                    <h3 class="text-base font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 text-xs flex items-center justify-center font-bold">4</span>
+                        submit оқиғасын өңдеу & сәтті хабарлама
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        <code class="text-yellow-400">form.addEventListener("submit", (e) => {...})</code> арқылы жіберу оқиғасы тыңдалады. <code class="text-emerald-300">e.preventDefault()</code> браузердің парақшаны қайта жүктеуін тоқтатып, барлық тексеру сәтті өткенде экранға жасыл растау хабарламасын шығарады.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Төменгі деректеме (Footer) -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 Ануар Төле. Тіркелу формасы және валидация. Барлық құқықтар қорғалған.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Валидация скрипті -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("registration-form");
+            const fullnameInput = document.getElementById("fullname");
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+
+            const fullnameError = document.getElementById("fullname-error");
+            const emailError = document.getElementById("email-error");
+            const passwordError = document.getElementById("password-error");
+            const successBox = document.getElementById("success-box");
+
+            const togglePasswordBtn = document.getElementById("toggle-password-btn");
+            const togglePasswordIcon = document.getElementById("toggle-password-icon");
+            const passwordStrengthBar = document.getElementById("password-strength-bar");
+            const passwordCharCount = document.getElementById("password-char-count");
+
+            // 1. Құпиясөзді көрсету / жасыру
+            if (togglePasswordBtn) {
+                togglePasswordBtn.addEventListener("click", () => {
+                    const isPassword = passwordInput.getAttribute("type") === "password";
+                    passwordInput.setAttribute("type", isPassword ? "text" : "password");
+                    togglePasswordIcon.classList.toggle("fa-eye", !isPassword);
+                    togglePasswordIcon.classList.toggle("fa-eye-slash", isPassword);
+                });
+            }
+
+            // 2. Құпиясөз ұзындығының индикаторы
+            if (passwordInput && passwordStrengthBar && passwordCharCount) {
+                passwordInput.addEventListener("input", () => {
+                    const len = passwordInput.value.length;
+                    passwordCharCount.textContent = `${len} / 8 таңба`;
+                    
+                    if (len === 0) {
+                        passwordStrengthBar.style.width = "0%";
+                        passwordStrengthBar.className = "h-full bg-red-500 transition-all duration-300";
+                    } else if (len < 5) {
+                        passwordStrengthBar.style.width = "30%";
+                        passwordStrengthBar.className = "h-full bg-red-500 transition-all duration-300";
+                    } else if (len < 8) {
+                        passwordStrengthBar.style.width = "65%";
+                        passwordStrengthBar.className = "h-full bg-amber-500 transition-all duration-300";
+                    } else {
+                        passwordStrengthBar.style.width = "100%";
+                        passwordStrengthBar.className = "h-full bg-emerald-500 transition-all duration-300";
+                    }
+
+                    if (len >= 8) {
+                        hideError(passwordInput, passwordError);
+                    }
+                });
+            }
+
+            // Нақты уақыттағы валидация
+            fullnameInput.addEventListener("input", () => {
+                if (fullnameInput.value.trim().length >= 2) {
+                    hideError(fullnameInput, fullnameError);
+                }
+            });
+
+            emailInput.addEventListener("input", () => {
+                if (isValidEmail(emailInput.value.trim())) {
+                    hideError(emailInput, emailError);
+                }
+            });
+
+            // 3. SUBMIT ОҚИҒАСЫН ТЫҢДАУ
+            form.addEventListener("submit", (e) => {
+                e.preventDefault(); // Беттің қайта жүктелуін тоқтату
+
+                let isValid = true;
+                const fullnameVal = fullnameInput.value.trim();
+                const emailVal = emailInput.value.trim();
+                const passwordVal = passwordInput.value;
+
+                // Аты-жөнін тексеру
+                if (fullnameVal === "" || fullnameVal.length < 2) {
+                    showError(fullnameInput, fullnameError);
+                    isValid = false;
+                } else {
+                    hideError(fullnameInput, fullnameError);
+                }
+
+                // Email тексеру
+                if (!isValidEmail(emailVal)) {
+                    showError(emailInput, emailError);
+                    isValid = false;
+                } else {
+                    hideError(emailInput, emailError);
+                }
+
+                // Құпиясөзді тексеру (minlength="8")
+                if (passwordVal.length < 8) {
+                    showError(passwordInput, passwordError);
+                    isValid = false;
+                } else {
+                    hideError(passwordInput, passwordError);
+                }
+
+                // Егер барлық өрістер сәтті өтсе:
+                if (isValid) {
+                    // Сәтті тексерілгенде хабарлама шығару
+                    document.getElementById("success-name").textContent = fullnameVal;
+                    document.getElementById("success-email").textContent = emailVal;
+                    const now = new Date();
+                    document.getElementById("success-time").textContent = now.toLocaleDateString("kk-KZ") + " сағат " + now.toLocaleTimeString("kk-KZ");
+
+                    successBox.classList.remove("hidden");
+                    successBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+                    // Alert арқылы да растау
+                    alert("Құттықтаймыз! Сіз сәтті тіркелдіңіз!\nАты-жөні: " + fullnameVal + "\nEmail: " + emailVal);
+                } else {
+                    successBox.classList.add("hidden");
+                }
+            });
+
+            // Көмекші функциялар
+            function showError(inputEl, errorEl) {
+                inputEl.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+                inputEl.classList.remove("border-gray-700", "focus:border-emerald-500", "focus:ring-emerald-500");
+                errorEl.classList.remove("hidden");
+            }
+
+            function hideError(inputEl, errorEl) {
+                inputEl.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+                inputEl.classList.add("border-gray-700", "focus:border-emerald-500", "focus:ring-emerald-500");
+                errorEl.classList.add("hidden");
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+
+        // СЫНАҚ ФУНКЦИЯЛАРЫ (Тестілеу үшін)
+        function testErrorPassword() {
+            document.getElementById("fullname").value = "Ануар Төле";
+            document.getElementById("email").value = "toleanuar@gmail.com";
+            document.getElementById("password").value = "12345"; // 5 таңба (< 8)
+            document.getElementById("password").dispatchEvent(new Event("input"));
+            document.getElementById("submit-btn").click();
+        }
+
+        function testErrorEmail() {
+            document.getElementById("fullname").value = "Ануар Төле";
+            document.getElementById("email").value = "anuar-mail-ru"; // @ белгісі жоқ
+            document.getElementById("password").value = "SuperPass123!";
+            document.getElementById("password").dispatchEvent(new Event("input"));
+            document.getElementById("submit-btn").click();
+        }
+
+        function testErrorEmptyName() {
+            document.getElementById("fullname").value = ""; // Бос
+            document.getElementById("email").value = "toleanuar@gmail.com";
+            document.getElementById("password").value = "SuperPass123!";
+            document.getElementById("password").dispatchEvent(new Event("input"));
+            document.getElementById("submit-btn").click();
+        }
+
+        function testSuccessCase() {
+            document.getElementById("fullname").value = "Ануар Төле";
+            document.getElementById("email").value = "toleanuar@gmail.com";
+            document.getElementById("password").value = "SecurePassword2026!";
+            document.getElementById("password").dispatchEvent(new Event("input"));
+            document.getElementById("submit-btn").click();
+        }
+
+        function resetRegistrationForm() {
+            document.getElementById("registration-form").reset();
+            document.getElementById("password-strength-bar").style.width = "0%";
+            document.getElementById("password-char-count").textContent = "0 / 8 таңба";
+            document.getElementById("fullname-error").classList.add("hidden");
+            document.getElementById("email-error").classList.add("hidden");
+            document.getElementById("password-error").classList.add("hidden");
+            document.getElementById("success-box").classList.add("hidden");
+
+            ["fullname", "email", "password"].forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.remove("border-red-500");
+                el.classList.add("border-gray-700");
+            });
+        }
+    </script>
+</body>
+</html>

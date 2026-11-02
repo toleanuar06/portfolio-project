@@ -362,6 +362,141 @@
         </div>
 
         <!-- Кәсіби Дағдылар Бөлімі -->
+
+        <!-- ========================================= -->
+        <!-- ТАПСЫРМА: ТІРКЕЛУ ФОРМАСЫ ЖӘНЕ ВАЛИДАЦИЯ -->
+        <!-- ========================================= -->
+        <div class="border-t border-gray-800 pt-16 mb-16" id="registration-section">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
+                    JavaScript Form Validation & Event Handling
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 mb-3">Тапсырма: Тіркелу формасы</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                    Аты-жөні, <code class="text-emerald-300">type="email"</code>, <code class="text-emerald-300">minlength="8"</code>, <code class="text-emerald-300">required</code> өрістері, <code class="text-emerald-300">submit</code> оқиғасын өңдеу және қате жағдайларын тестілеу.
+                </p>
+                <div class="mt-4">
+                    <a href="registration.html" class="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg border border-gray-700 transition">
+                        <i class="fas fa-external-link-alt text-xs"></i> Жеке бетте ашу (registration.html)
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto mb-10">
+                
+                <!-- Форма блогы (7 баған) -->
+                <div class="lg:col-span-7 bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                            <h3 class="text-xl font-bold text-white flex items-center">
+                                <i class="fas fa-user-plus text-emerald-400 mr-3"></i> Тіркелу формасы
+                            </h3>
+                            <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full font-mono">Валидация</span>
+                        </div>
+
+                        <form id="portfolio-reg-form" novalidate class="space-y-5">
+                            <div>
+                                <label for="port-fullname" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                    <span><i class="fas fa-user text-emerald-400 mr-1.5"></i> Аты-жөні:</span>
+                                    <span class="text-xs text-red-400">* required</span>
+                                </label>
+                                <input type="text" id="port-fullname" required minlength="2" placeholder="Мысалы: Ануар Төле" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
+                                <p id="port-fullname-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                    <i class="fas fa-exclamation-circle"></i> <span>Аты-жөніңізді енгізіңіз (кемінде 2 таңба)</span>
+                                </p>
+                            </div>
+
+                            <div>
+                                <label for="port-email" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                    <span><i class="fas fa-envelope text-emerald-400 mr-1.5"></i> Email:</span>
+                                    <span class="text-xs text-red-400">* type="email"</span>
+                                </label>
+                                <input type="email" id="port-email" required placeholder="toleanuar@gmail.com" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
+                                <p id="port-email-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                    <i class="fas fa-exclamation-circle"></i> <span>Дұрыс email форматын жазыңыз (name@example.com)</span>
+                                </p>
+                            </div>
+
+                            <div>
+                                <label for="port-password" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
+                                    <span><i class="fas fa-lock text-emerald-400 mr-1.5"></i> Құпиясөз:</span>
+                                    <span class="text-xs text-red-400">* minlength="8"</span>
+                                </label>
+                                <input type="password" id="port-password" required minlength="8" placeholder="Кемінде 8 таңба" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
+                                <p id="port-password-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
+                                    <i class="fas fa-exclamation-circle"></i> <span>Құпиясөз тым қысқа! Кемінде 8 таңба болуы шарт.</span>
+                                </p>
+                            </div>
+
+                            <button type="submit" id="port-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
+                                <i class="fas fa-check-circle"></i> Тіркелу (Submit оқиғасы)
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Сәтті хабарлама -->
+                    <div id="port-success-box" class="hidden mt-6 p-5 rounded-xl bg-emerald-950/40 border-2 border-emerald-500 transition-all duration-300">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-emerald-400 text-2xl mt-0.5"></i>
+                            <div>
+                                <h4 class="text-base font-bold text-emerald-400">Құттықтаймыз! Тіркелу сәтті аяқталды!</h4>
+                                <p class="text-xs text-gray-300 mt-1">Пайдаланушы: <strong id="port-res-name" class="text-white"></strong> | Email: <strong id="port-res-email" class="text-emerald-300"></strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Қате жағдайларын сынау (5 баған) -->
+                <div class="lg:col-span-5 space-y-5">
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
+                        <h4 class="text-base font-bold text-white mb-2 flex items-center">
+                            <i class="fas fa-vial text-purple-400 mr-2"></i> Қате жағдайларын сынау
+                        </h4>
+                        <p class="text-xs text-gray-400 mb-4">
+                            Кемінде екі қате жағдайды тестілеу үшін дайын сценарийлер:
+                        </p>
+
+                        <div class="space-y-3">
+                            <button type="button" onclick="testPortPasswordErr()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-red-950/30 border border-gray-700 hover:border-red-500/50 transition">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <span class="text-xs font-bold text-red-400">1-қате: Қысқа құпиясөз</span>
+                                    <span class="text-[10px] bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded">&lt; 8 таңба</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">"12345" енгізіп, тексеру</p>
+                            </button>
+
+                            <button type="button" onclick="testPortEmailErr()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-amber-950/30 border border-gray-700 hover:border-amber-500/50 transition">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <span class="text-xs font-bold text-amber-400">2-қате: Қате Email</span>
+                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">no @ sign</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">"anuar-mail-ru" форматын сынау</p>
+                            </button>
+
+                            <button type="button" onclick="testPortSuccess()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-emerald-950/30 border border-gray-700 hover:border-emerald-500/50 transition">
+                                <div class="flex justify-between items-center mb-0.5">
+                                    <span class="text-xs font-bold text-emerald-400">Сәтті жағдай: Барлығы дұрыс</span>
+                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">Valid</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400">Дұрыс мәліметтерді толтырып жіберу</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Түсіндірме карточкасы -->
+                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl text-xs space-y-2">
+                        <h4 class="font-bold text-white text-sm border-b border-gray-700 pb-2 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-400 mr-2"></i> Орындалған тексерулер
+                        </h4>
+                        <p class="text-gray-300">✔ <strong>required:</strong> Бос өрістерді жіберуге тыйым салынды.</p>
+                        <p class="text-gray-300">✔ <strong>type="email":</strong> Электронды поштаның форматы қадағаланады.</p>
+                        <p class="text-gray-300">✔ <strong>minlength="8":</strong> 8 символдан аз құпиясөзге ескерту беріледі.</p>
+                        <p class="text-gray-300">✔ <strong>submit оқиғасы:</strong> <code class="text-emerald-300">e.preventDefault()</code> арқылы ұсталып, экранда жасыл хабарлама шығады.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <div class="border-t border-gray-800 pt-16">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-bold text-white mb-4">Техникалық Дағдылар</h2>
