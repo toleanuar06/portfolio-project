@@ -137,3 +137,61 @@ body {
     border-radius: 50%;
     margin-top: 5px;
 }
+
+
+/* =========================================
+   ПРАКТИКАЛЫҚ САБАҚ №10: ШАРЛАР АНИМАЦИЯСЫ
+========================================= */
+.balloon-item {
+    position: fixed;
+    top: -100px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    opacity: 0.95;
+    box-shadow: inset -6px -6px 14px rgba(0, 0, 0, 0.25), inset 6px 6px 14px rgba(255, 255, 255, 0.45), 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: balloonFall linear forwards;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.balloon-item::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.balloon-item::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 5px;
+    border-radius: 2px;
+    background: inherit;
+    filter: brightness(0.85);
+}
+
+@keyframes balloonFall {
+    0% {
+        top: -100px;
+        transform: rotate(0deg) scale(0.9);
+        opacity: 1;
+    }
+    30% {
+        transform: rotate(12deg) scale(1.05);
+    }
+    70% {
+        transform: rotate(-15deg) scale(1);
+    }
+    100% {
+        top: 105vh;
+        transform: rotate(20deg) scale(0.95);
+        opacity: 0.9;
+    }
+}

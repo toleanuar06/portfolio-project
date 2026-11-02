@@ -394,3 +394,207 @@ function applyHomework() {
     // Түсті бүкіл сайтқа емес, тек сол карточкаға қолдану (дизайн бұзылмау үшін)
     document.getElementById("hw-card").style.backgroundColor = selectedColor;
 }
+
+
+/* =========================================
+   ПРАКТИКАЛЫҚ САБАҚ №10: ОҚИҒАЛАРМЕН ЖҰМЫС
+========================================= */
+
+// 1. Күн және түс таңдау функциясы (innerHTML & textContent, DOM manipulation)
+function showPractical10Info() {
+    const dateInput = document.getElementById("p10-date");
+    const colorInput = document.getElementById("p10-color");
+    const resultBox = document.getElementById("p10-result-box");
+    const screenOutput = document.getElementById("p10-screen-output");
+    const colorHex = document.getElementById("p10-color-hex");
+
+    if (!dateInput || !colorInput || !screenOutput) return;
+
+    let selectedDate = dateInput.value;
+    let selectedColor = colorInput.value;
+
+    if (!selectedDate) {
+        alert("Өтінемін, күнді таңдаңыз!");
+        return;
+    }
+
+    // Түс кодын жаңарту
+    if (colorHex) {
+        colorHex.textContent = selectedColor;
+    }
+
+    // Тапсырма талабы: innerHTML арқылы экранға шығару
+    screenOutput.innerHTML = `
+        <div class="text-sm md:text-base font-mono">
+            <p class="text-white">Таңдалған күн: <span class="text-blue-400 font-bold">${selectedDate}</span></p>
+            <p class="text-white">Таңдалған түс: <span class="font-bold" style="color: ${selectedColor};">${selectedColor}</span></p>
+        </div>
+    `;
+
+    // Шекара түсін динамикалық түрде өзгерту (DOM Style Manipulation)
+    if (resultBox) {
+        resultBox.style.borderColor = selectedColor;
+        resultBox.style.borderStyle = "solid";
+        resultBox.style.boxShadow = `0 0 15px ${selectedColor}40`;
+    }
+
+    // Тапсырмадағы alert мысалы
+    alert("Таңдалған күн: " + selectedDate + "\nТаңдалған түс: " + selectedColor);
+}
+
+// 2. «Жасырын санды тап» ойынының логикасы
+let p10SecretNumber = Math.floor(Math.random() * 20) + 1;
+let p10Attempts = 0;
+let p10GameOver = false;
+
+function checkSecretNumber() {
+    const input = document.getElementById("game-guess-input");
+    const statusBox = document.getElementById("game-message-box");
+    const statusText = document.getElementById("game-status-text");
+    const attemptsEl = document.getElementById("game-attempts");
+
+    if (!input || !statusText) return;
+
+    if (p10GameOver) {
+        alert("Ойын аяқталды! Қайта ойнау үшін «Жаңадан бастау» батырмасын басыңыз.");
+        return;
+    }
+
+    let userGuess = parseInt(input.value, 10);
+
+    // Валидация
+    if (isNaN(userGuess) || userGuess < 1 || userGuess > 20) {
+        statusText.innerHTML = `<span class="text-yellow-400 font-semibold"><i class="fas fa-exclamation-triangle mr-1"></i> 1 мен 20 аралығындағы санды енгізіңіз!</span>`;
+        if (statusBox) statusBox.style.borderColor = "#facc15";
+        return;
+    }
+
+    p10Attempts++;
+    if (attemptsEl) attemptsEl.textContent = p10Attempts;
+
+    // Шартты оператор (if...else)
+    if (userGuess === p10SecretNumber) {
+        // Дұрыс тапқан жағдай
+        p10GameOver = true;
+        statusText.innerHTML = `
+            <div class="text-center">
+                <p class="text-green-400 font-bold text-lg mb-1">🎉 Құттықтаймыз! Сіз дұрыс таптыңыз!</p>
+                <p class="text-gray-300 text-xs">Жасырын сан: <strong class="text-white text-sm">${p10SecretNumber}</strong> (Бар болғаны ${p10Attempts} әрекетте таптыңыз)</p>
+            </div>
+        `;
+        if (statusBox) {
+            statusBox.style.borderColor = "#22c55e";
+            statusBox.style.backgroundColor = "rgba(34, 197, 94, 0.1)";
+        }
+        // Экранда түрлі-түсті шарлар түседі
+        triggerBalloonsEffect();
+    } else if (userGuess < p10SecretNumber) {
+        // Енгізілген сан жасырын саннан кіші
+        statusText.innerHTML = `<span class="text-blue-400 font-bold text-base"><i class="fas fa-arrow-up mr-2 animate-bounce"></i> Сан үлкенірек</span>`;
+        if (statusBox) {
+            statusBox.style.borderColor = "#3b82f6";
+            statusBox.style.backgroundColor = "rgba(59, 130, 246, 0.08)";
+        }
+    } else {
+        // Енгізілген сан жасырын саннан үлкен
+        statusText.innerHTML = `<span class="text-amber-400 font-bold text-base"><i class="fas fa-arrow-down mr-2 animate-bounce"></i> Сан кішірек</span>`;
+        if (statusBox) {
+            statusBox.style.borderColor = "#f59e0b";
+            statusBox.style.backgroundColor = "rgba(245, 158, 11, 0.08)";
+        }
+    }
+
+    input.value = "";
+    input.focus();
+}
+
+function restartSecretGame() {
+    p10SecretNumber = Math.floor(Math.random() * 20) + 1;
+    p10Attempts = 0;
+    p10GameOver = false;
+
+    const input = document.getElementById("game-guess-input");
+    const statusBox = document.getElementById("game-message-box");
+    const statusText = document.getElementById("game-status-text");
+    const attemptsEl = document.getElementById("game-attempts");
+
+    if (input) {
+        input.value = "";
+        input.focus();
+    }
+    if (attemptsEl) attemptsEl.textContent = "0";
+    if (statusText) {
+        statusText.innerHTML = `<span class="text-gray-400 text-sm"><i class="fas fa-info-circle mr-1.5 text-purple-400"></i> Жаңа сан жасырылды (1-20). Сан енгізіп, тексеріңіз!</span>`;
+    }
+    if (statusBox) {
+        statusBox.style.borderColor = "#374151";
+        statusBox.style.backgroundColor = "rgba(17, 24, 39, 0.8)";
+    }
+}
+
+// Визуалды эффект: түрлі-түсті шарлар түсу анимациясы
+function triggerBalloonsEffect() {
+    let container = document.getElementById("balloons-container");
+    if (!container) {
+        container = document.createElement("div");
+        container.id = "balloons-container";
+        container.className = "pointer-events-none fixed inset-0 z-[9999] overflow-hidden";
+        document.body.appendChild(container);
+    }
+
+    container.innerHTML = "";
+    container.classList.remove("hidden");
+
+    const balloonColors = [
+        "#ef4444", "#3b82f6", "#10b981", "#f59e0b",
+        "#8b5cf6", "#ec4899", "#06b6d4", "#eab308", "#14b8a6"
+    ];
+
+    const balloonCount = 35;
+
+    for (let i = 0; i < balloonCount; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon-item";
+        const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+        const left = Math.random() * 92 + 2; // vw
+        const size = Math.random() * 24 + 32; // px
+        const duration = Math.random() * 2.5 + 2.5; // 2.5s - 5s
+        const delay = Math.random() * 1.5; // 0s - 1.5s
+
+        balloon.style.left = left + "vw";
+        balloon.style.width = size + "px";
+        balloon.style.height = (size * 1.25) + "px";
+        balloon.style.backgroundColor = color;
+        balloon.style.animationDuration = duration + "s";
+        balloon.style.animationDelay = delay + "s";
+
+        container.appendChild(balloon);
+    }
+
+    setTimeout(() => {
+        if (container) {
+            container.innerHTML = "";
+            container.classList.add("hidden");
+        }
+    }, 6000);
+}
+
+// Enter пернесін тыңдау
+document.addEventListener("DOMContentLoaded", () => {
+    const gameInput = document.getElementById("game-guess-input");
+    if (gameInput) {
+        gameInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                checkSecretNumber();
+            }
+        });
+    }
+
+    const colorPicker = document.getElementById("p10-color");
+    const colorHex = document.getElementById("p10-color-hex");
+    if (colorPicker && colorHex) {
+        colorPicker.addEventListener("input", (e) => {
+            colorHex.textContent = e.target.value;
+        });
+    }
+});

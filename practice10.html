@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практикалық сабақ №10 - Оқиғалармен жұмыс | Ануар Төле</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen font-sans">
+
+    <!-- Навигация -->
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <a href="portfolio.html" class="font-bold text-2xl text-blue-500 tracking-wider">AT.</a>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 border border-blue-500/30 px-2.5 py-1 rounded-full font-mono">Практикалық жұмыс №10</span>
+                </div>
+                <nav class="flex items-center space-x-6">
+                    <a href="portfolio.html" class="text-gray-300 hover:text-white text-sm flex items-center gap-1.5 transition">
+                        <i class="fas fa-arrow-left text-xs"></i> Портфолиоға қайту
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Негізгі бөлім -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Тақырып -->
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20">
+                Оқиғалармен жұмыс: батырмаға әрекет қосу
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 mb-3">
+                Практикалық сабақ №10
+            </h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                HTML5 форма элементтері (<code class="text-blue-300">date</code>, <code class="text-blue-300">color</code>), JavaScript арқылы батырманың басылу оқиғасын (<code class="text-blue-300">click</code>) тыңдау, DOM manipulation және «Жасырын санды тап» ойыны.
+            </p>
+        </div>
+
+        <!-- Тапсырмалар торы -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            
+            <!-- 1-ТАПСЫРМА: КҮН ЖӘНЕ ТҮС ТАҢДАУ -->
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between" id="p10-card">
+                <div>
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                        <h2 class="text-xl font-bold text-white flex items-center">
+                            <i class="fas fa-palette text-blue-400 mr-3"></i> 1. Күн және түс таңдау
+                        </h2>
+                        <span class="text-xs bg-blue-600/20 text-blue-400 border border-blue-500/30 px-2.5 py-1 rounded-full font-mono">Date & Color</span>
+                    </div>
+
+                    <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                        Күн таңдау өрісін (<code class="text-blue-300 font-mono text-xs">&lt;input type="date"&gt;</code>) және түс таңдау өрісін (<code class="text-blue-300 font-mono text-xs">&lt;input type="color"&gt;</code>) пайдаланып, мәндерді экранға шығару.
+                    </p>
+
+                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                        <div>
+                            <label for="p10-date" class="block text-sm font-medium text-gray-300 mb-2">
+                                <i class="far fa-calendar-alt text-blue-400 mr-1.5"></i> Күн таңдаңыз:
+                            </label>
+                            <input type="date" id="p10-date" value="2026-03-10" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition cursor-pointer">
+                        </div>
+
+                        <div>
+                            <label for="p10-color" class="block text-sm font-medium text-gray-300 mb-2">
+                                <i class="fas fa-eye-dropper text-blue-400 mr-1.5"></i> Түс таңдаңыз:
+                            </label>
+                            <div class="flex items-center gap-4">
+                                <input type="color" id="p10-color" value="#ff0000" class="w-16 h-11 bg-gray-900 rounded-xl border border-gray-700 cursor-pointer p-1">
+                                <span id="p10-color-hex" class="text-sm font-mono text-gray-400 bg-gray-900 px-3 py-1.5 rounded-lg border border-gray-700">#ff0000</span>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="showPractical10Info()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                            <i class="fas fa-check-circle"></i> Көрсету
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Экрандағы нәтиже -->
+                <div id="p10-result-box" class="mt-8 p-5 rounded-xl bg-gray-900/90 border-2 border-dashed border-gray-700 transition-all duration-300">
+                    <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 font-semibold">Экранға шығарылған нәтиже:</p>
+                    <div id="p10-screen-output" class="text-base text-gray-200 font-mono space-y-1">
+                        <div>Таңдалған күн: <span class="text-blue-400 font-semibold" id="p10-out-date">2026-03-10</span></div>
+                        <div>Таңдалған түс: <span class="text-red-400 font-semibold" id="p10-out-color">#ff0000</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2-ТАПСЫРМА: «ЖАСЫРЫН САНДЫ ТАП» ОЙЫНЫ -->
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between relative overflow-hidden" id="p10-game-card">
+                <div>
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                        <h2 class="text-xl font-bold text-white flex items-center">
+                            <i class="fas fa-gamepad text-purple-400 mr-3"></i> 2. «Жасырын санды тап» ойыны
+                        </h2>
+                        <span class="text-xs bg-purple-600/20 text-purple-400 border border-purple-500/30 px-2.5 py-1 rounded-full font-mono">1 мен 20 аралығы</span>
+                    </div>
+
+                    <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                        Компьютер 1 мен 20 аралығында жасырын сан таңдады. Input өрісіне сан жазып тексеріңіз. Тапқан жағдайда түрлі-түсті шарлар түседі! 🎈
+                    </p>
+
+                    <div class="space-y-5">
+                        <div>
+                            <label for="game-guess-input" class="block text-sm font-medium text-gray-300 mb-2">
+                                Сан енгізіңіз (1 - 20):
+                            </label>
+                            <div class="flex gap-3">
+                                <input type="number" id="game-guess-input" min="1" max="20" placeholder="Мысалы: 12" class="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-lg font-semibold text-center transition">
+                                <button type="button" onclick="checkSecretNumber()" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg transition transform active:scale-95 flex items-center gap-2">
+                                    <i class="fas fa-paper-plane"></i> Тексеру
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs text-gray-400 px-1">
+                            <span>Әрекет саны: <strong id="game-attempts" class="text-purple-400 text-sm font-mono">0</strong></span>
+                            <button type="button" onclick="restartSecretGame()" class="text-gray-400 hover:text-white transition flex items-center gap-1.5 py-1 px-2 rounded-lg hover:bg-gray-700">
+                                <i class="fas fa-redo-alt text-xs"></i> Жаңадан бастау
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ойынның хабарламасы мен нәтижесі -->
+                <div id="game-message-box" class="mt-8 p-5 rounded-xl bg-gray-900/90 border border-gray-700 min-h-[90px] flex items-center justify-center text-center transition-all duration-300">
+                    <div id="game-status-text" class="text-gray-400 text-sm">
+                        <i class="fas fa-info-circle mr-1.5 text-purple-400"></i> Сан енгізіп, «Тексеру» батырмасын басыңыз
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3. БАҚЫЛАУ СҰРАҚТАРЫ МЕН ЖАУАПТАРЫ -->
+        <div class="bg-gray-800 p-8 sm:p-10 rounded-2xl border border-gray-700 shadow-xl mb-12">
+            <div class="flex items-center gap-3 border-b border-gray-700 pb-4 mb-6">
+                <i class="fas fa-question-circle text-blue-400 text-2xl"></i>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Бақылау сұрақтары мен жауаптары</h2>
+                    <p class="text-sm text-gray-400">Сабақты бекітуге және теориялық білімді тексеруге арналған жауаптар</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Сұрақ 1 -->
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700/80">
+                    <h3 class="text-base font-semibold text-blue-400 mb-2 flex items-start gap-2">
+                        <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">1</span>
+                        input тегінің type="date" және type="color" түрлері веб-бетте қандай интерфейс элементтерін көрсетеді?
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed pl-6">
+                        <strong>Жауабы:</strong> <code class="text-blue-300">type="date"</code> веб-бетте күн, ай, жылды көрнекі таңдауға арналған интерактивті күнтізбе (Date picker) интерфейсін көрсетеді (мәні <code class="text-gray-400">YYYY-MM-DD</code> форматында). Ал <code class="text-blue-300">type="color"</code> қолданушыға түстер палитрасын (Color picker) ашатын батырма тәрізді элемент береді және таңдалған түстің он алтылық (HEX) кодын (мысалы, <code class="text-gray-400">#ff0000</code>) қайтарады.
+                    </p>
+                </div>
+
+                <!-- Сұрақ 2 -->
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700/80">
+                    <h3 class="text-base font-semibold text-blue-400 mb-2 flex items-start gap-2">
+                        <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">2</span>
+                        JavaScript арқылы енгізу өрісіндегі мәнді алу үшін қандай қасиет (property) қолданылады?
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed pl-6">
+                        <strong>Жауабы:</strong> Енгізу өрістерінен (<code class="text-blue-300">&lt;input&gt;</code>, <code class="text-blue-300">&lt;select&gt;</code>, <code class="text-blue-300">&lt;textarea&gt;</code>) мәнді оқу үшін <strong><code class="text-yellow-400">.value</code></strong> қасиеті қолданылады. Мысалы: <code class="text-gray-300 font-mono text-xs">document.getElementById("p10-date").value</code>.
+                    </p>
+                </div>
+
+                <!-- Сұрақ 3 -->
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700/80">
+                    <h3 class="text-base font-semibold text-blue-400 mb-2 flex items-start gap-2">
+                        <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">3</span>
+                        innerHTML қасиетінің textContent қасиетінен басты айырмашылығы неде?
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed pl-6">
+                        <strong>Жауабы:</strong> <strong><code class="text-blue-300">innerHTML</code></strong> HTML тегтерін өңдейді (парсинг жасайды) және стильдендірілген жаңа элементтерді бетке кірістіруге мүмкіндік береді. Ал <strong><code class="text-blue-300">textContent</code></strong> кез келген мазмұнды тек қарапайым таза мәтін (raw text) ретінде қабылдайды, HTML тегтерін орындамай мәтін күйінде шығарады (XSS қауіпсіздігі үшін өте маңызды).
+                    </p>
+                </div>
+
+                <!-- Сұрақ 4 -->
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700/80">
+                    <h3 class="text-base font-semibold text-blue-400 mb-2 flex items-start gap-2">
+                        <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">4</span>
+                        Шартты операторлар (if...else) бұл тапсырмада не үшін қажет болды?
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed pl-6">
+                        <strong>Жауабы:</strong> «Жасырын санды тап» ойынында ойыншы енгізген санды компьютер ойлаған жасырын санмен салыстыру үшін қолданылды:
+                        1) <code class="text-green-400 font-mono text-xs">userGuess === secretNumber</code> болса — дұрыс тапты деп хабарлау және шарларды ұшыру;
+                        2) <code class="text-blue-400 font-mono text-xs">userGuess &lt; secretNumber</code> болса — «Сан үлкенірек» нұсқауын беру;
+                        3) <code class="text-yellow-400 font-mono text-xs">else</code> болса — «Сан кішірек» деп бағыт беру.
+                    </p>
+                </div>
+
+                <!-- Сұрақ 5 -->
+                <div class="bg-gray-900/80 p-5 rounded-xl border border-gray-700/80">
+                    <h3 class="text-base font-semibold text-blue-400 mb-2 flex items-start gap-2">
+                        <span class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-xs font-mono">5</span>
+                        Нәтиженің шекара түсін динамикалық түрде өзгерту (resultBox.style.borderColor = selectedColor) DOM бағдарламалауында қандай деңгейге жатады?
+                    </h3>
+                    <p class="text-gray-300 text-sm leading-relaxed pl-6">
+                        <strong>Жауабы:</strong> Бұл DOM (Document Object Model) элементтерінің CSS стилін тікелей JavaScript арқылы динамикалық басқаруға жатады (<strong>DOM Style Manipulation / CSSOM</strong>). JavaScript элементтің <code class="text-blue-300">style</code> нысанына қатынасып, оқиға болған сәтте нақты уақыт режимінде элементтің визуалды қасиетін өзгертеді.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Төменгі деректеме (Footer) -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 Ануар Төле. Практикалық сабақ №10. Барлық құқықтар қорғалған.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Ортақ скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>
