@@ -3,93 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оқу күнтізбесі - Ануар Төле</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen relative">
+    <title>Оқу күнтізбесі & AI Жоспарлаушы - Ануар Төле</title>
     
-    <!-- Навигация -->
-    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-xl text-blue-400">AT.</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Басты бет</a>
-                    <a href="blog.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Блог</a>
-                    <a href="portfolio.html" class="text-gray-300 hover:text-white px-3 py-2 transition">Портфолио</a>
-                    <a href="calendar.html" class="text-blue-400 font-medium px-3 py-2">Күнтізбе</a>
-                </nav>
-            </div>
-        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .calendar-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        .weekday {
+            background-color: #0b1120;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .calendar-days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            background-color: var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+
+        .day-cell {
+            background-color: #1e293b;
+            min-height: 100px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-cell:hover {
+            background-color: #2b3b52;
+        }
+
+        .day-cell.empty {
+            background-color: #0f172a;
+            cursor: default;
+        }
+
+        .day-cell .day-num {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        .day-cell.today {
+            border: 2px solid var(--primary);
+        }
+
+        .plan-badge {
+            background-color: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #10b981;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= НАВИГАЦИЯ (HEADER) ================= -->
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i> AT.<span>Portfolio</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Мәзірді ашу">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="menu" id="nav-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Басты бет</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Блог</a>
+            <a href="portfolio.html"><i class="fas fa-briefcase"></i> Жобалар</a>
+            <a href="practices.html"><i class="fas fa-flask"></i> Зертхана (№8, 10, 11)</a>
+            <a href="students.html"><i class="fas fa-table"></i> Үлгерім кестесі (№6)</a>
+            <a href="calendar.html" class="active"><i class="fas fa-calendar-alt"></i> Күнтізбе</a>
+            <a href="calcul.html"><i class="fas fa-calculator"></i> Калькулятор</a>
+        </nav>
     </header>
 
-    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+    <!-- ================= НЕГІЗГІ МАЗМҰН (MAIN) ================= -->
+    <main class="hero">
         
-        <!-- Күнтізбе тақырыбы мен басқару панелі (Жоғарыда орналасқан) -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 border-b border-gray-700 pb-4 gap-4">
-            <div>
-                <h2 class="text-3xl font-bold text-white">Интерактивті Күнтізбе</h2>
-                <p class="text-gray-400 mt-2">2026-2027 оқу жылы (Жеке тапсырма)</p>
-            </div>
-            
-            <!-- Айды ауыстыру басқару панелі -->
-            <div class="flex items-center gap-4 bg-gray-800 p-2 rounded-lg border border-gray-700">
-                <button id="prev-month" class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div id="current-month-display" class="text-white font-semibold min-w-[140px] text-center">
-                    <!-- JavaScript осы жерге айдың атын жазады -->
+        <div class="calendar-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+                <div>
+                    <h1 class="section-title">Интерактивті Оқу Күнтізбесі</h1>
+                    <p style="color: var(--text-muted);">
+                        Күндерді басу арқылы сабақ жоспарын жазыңыз немесе «AI Жоспар» батырмасымен автоматты құрыңыз (Деректер базасында сақталады).
+                    </p>
                 </div>
-                <button id="next-month" class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+
+                <!-- Айды ауыстыру -->
+                <div style="display:flex; align-items:center; gap:12px; background:#0f172a; border:1px solid var(--border-color); border-radius:12px; padding:6px 14px;">
+                    <button id="prev-month-btn" class="btn outline" style="padding:6px 12px; border:none;"><i class="fas fa-chevron-left"></i></button>
+                    <div id="month-title" style="color:#fff; font-weight:700; min-width:160px; text-align:center;">Ай Жыл</div>
+                    <button id="next-month-btn" class="btn outline" style="padding:6px 12px; border:none;"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Апта күндері -->
+            <div class="calendar-weekdays">
+                <div class="weekday">Дүйсенбі</div>
+                <div class="weekday">Сейсенбі</div>
+                <div class="weekday">Сәрсенбі</div>
+                <div class="weekday">Бейсенбі</div>
+                <div class="weekday">Жұма</div>
+                <div class="weekday" style="color:var(--accent);">Сенбі</div>
+                <div class="weekday" style="color:#ef4444;">Жексенбі</div>
+            </div>
+
+            <!-- Күндер торы -->
+            <div id="days-grid" class="calendar-days-grid">
+                <!-- JavaScript арқылы салынады -->
             </div>
         </div>
-        
-        <!-- Күнтізбе торы -->
-        <div class="calendar-wrapper bg-gray-800 p-6 rounded-xl border border-gray-700 shadow-lg">
-            <!-- Апта күндерінің тақырыптары -->
-            <div class="grid grid-cols-7 gap-1 mb-1">
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm rounded-tl-lg">Дүй</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm">Сей</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm">Сәр</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm">Бей</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm">Жұм</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm">Сен</div>
-                <div class="bg-gray-900 text-gray-400 text-center py-2 font-semibold text-sm rounded-tr-lg">Жек</div>
-            </div>
-            
-            <!-- Күндер салынатын негізгі тор (Grid) -->
-            <div id="calendar-grid" class="grid grid-cols-7 gap-1 bg-gray-700 border border-gray-700 rounded-b-lg overflow-hidden"></div>
-        </div>
+
     </main>
 
-    <!-- Modal (Сабақ жоспарын жазу терезесі) -->
-    <div id="plan-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-4">
-        <div class="bg-gray-800 rounded-xl p-6 w-full max-w-lg border border-gray-600 shadow-2xl">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-white" id="modal-date-str">Күн</h3>
-                <button id="close-modal" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+    <!-- Сабақ жоспарын сақтау модаль терезесі -->
+    <div id="plan-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:110; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; max-width:550px; width:100%; padding:26px; box-shadow:0 15px 40px rgba(0,0,0,0.7);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <h3 id="plan-modal-date" style="color:#fff; font-size:1.2rem;"><i class="far fa-calendar-check" style="color:var(--primary);"></i> Сабақ жоспары</h3>
+                <button id="close-plan-modal" style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;"><i class="fas fa-times"></i></button>
             </div>
-            <textarea id="plan-textarea" class="w-full h-40 bg-gray-900 text-gray-200 border border-gray-600 rounded-lg p-3 focus:outline-none focus:border-blue-500 mb-4 placeholder-gray-500" placeholder="Осы күнге сабақ жоспарын немесе тақырыбын жазыңыз..."></textarea>
-            <div class="flex flex-col sm:flex-row gap-3 justify-between">
-                <button id="generate-ai-plan" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center">
-                    <i class="fas fa-magic mr-2"></i> AI жоспар құру
+
+            <textarea id="plan-input" class="input-box" style="max-width:100%; height:140px; line-height:1.5;" placeholder="Осы күнге жоспарланған тақырып пен тапсырмаларды жазыңыз..."></textarea>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:14px; flex-wrap:wrap;">
+                <button type="button" class="btn" id="generate-ai-btn" style="background:#8b5cf6; border-color:#8b5cf6; font-size:0.85rem;">
+                    <i class="fas fa-magic"></i> AI сабақ жоспарын құру
                 </button>
-                <button id="save-plan" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition">Сақтау</button>
+                <div style="display:flex; gap:8px;">
+                    <button type="button" class="btn outline" id="delete-plan-btn" style="color:#ef4444; border-color:#ef4444; font-size:0.85rem;">Жою</button>
+                    <button type="button" class="btn" id="save-plan-btn" style="background:#10b981; border-color:#10b981; font-size:0.85rem;">Сақтау</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-gray-800 border-t border-gray-700 py-6 mt-auto">
-        <div class="max-w-6xl mx-auto px-4 text-center text-gray-400 text-sm">
-            &copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.
-        </div>
+    <!-- ================= ТӨМЕНГІ ДЕРЕКТЕМЕ (FOOTER) ================= -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+        <p style="font-size: 0.85rem; color: #64748b;">
+            Оқу процесін цифрландыру және интерактивті жоспарлау жүйесі.
+        </p>
     </footer>
+
+    <script src="db.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const daysGrid = document.getElementById('days-grid');
+            const monthTitle = document.getElementById('month-title');
+            const prevBtn = document.getElementById('prev-month-btn');
+            const nextBtn = document.getElementById('next-month-btn');
+
+            const planModal = document.getElementById('plan-modal');
+            const planModalDate = document.getElementById('plan-modal-date');
+            const planInput = document.getElementById('plan-input');
+            const closePlanModal = document.getElementById('close-plan-modal');
+            const savePlanBtn = document.getElementById('save-plan-btn');
+            const deletePlanBtn = document.getElementById('delete-plan-btn');
+            const generateAiBtn = document.getElementById('generate-ai-btn');
+
+            let currentDate = new Date(2026, 8, 1); // Қыркүйек 2026 бастауы
+            let selectedDateKey = null;
+
+            const monthNamesKk = [
+                'Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым',
+                'Шілде', 'Тамыз', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан'
+            ];
+
+            function renderCalendar() {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+
+                monthTitle.textContent = `${monthNamesKk[month]} ${year}`;
+
+                // Айдың бірінші күнінің аптадағы реті (0-Жексенбі -> 6-Дүйсенбі бойынша реттеу)
+                const firstDay = new Date(year, month, 1).getDay();
+                // Қазақстан стандарты: Дүйсенбі - 0, Жексенбі - 6
+                let startDayOffset = firstDay === 0 ? 6 : firstDay - 1;
+
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                const plans = window.db.getCalendarPlans();
+
+                daysGrid.innerHTML = '';
+
+                // Бос ұяшықтар
+                for(let i = 0; i < startDayOffset; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = 'day-cell empty';
+                    daysGrid.appendChild(emptyCell);
+                }
+
+                // Күндер
+                for(let d = 1; d <= daysInMonth; d++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'day-cell';
+                    
+                    const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                    const planText = plans[dateKey];
+
+                    cell.innerHTML = `<span class="day-num">${d}</span>`;
+
+                    if (planText) {
+                        const badge = document.createElement('div');
+                        badge.className = 'plan-badge';
+                        badge.textContent = planText.substring(0, 16) + '...';
+                        cell.appendChild(badge);
+                    }
+
+                    cell.addEventListener('click', () => {
+                        selectedDateKey = dateKey;
+                        planModalDate.innerHTML = `<i class="far fa-calendar-check" style="color:var(--primary);"></i> ${d} ${monthNamesKk[month]} ${year}`;
+                        planInput.value = plans[dateKey] || '';
+                        planModal.style.display = 'flex';
+                    });
+
+                    daysGrid.appendChild(cell);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+
+            closePlanModal.addEventListener('click', () => planModal.style.display = 'none');
+
+            savePlanBtn.addEventListener('click', () => {
+                if (selectedDateKey) {
+                    window.db.saveCalendarPlan(selectedDateKey, planInput.value);
+                    planModal.style.display = 'none';
+                    renderCalendar();
+                }
+            });
+
+            deletePlanBtn.addEventListener('click', () => {
+                if (selectedDateKey) {
+                    window.db.saveCalendarPlan(selectedDateKey, '');
+                    planModal.style.display = 'none';
+                    renderCalendar();
+                }
+            });
+
+            generateAiBtn.addEventListener('click', () => {
+                const samplePlans = [
+                    "Информатика: HTML5 семантикалық тегтері және CSS Flexbox макеті. Практикалық тапсырма орындау.",
+                    "Python негіздері: Шартты операторлар if...else және циклдар. Есептер шығару.",
+                    "Мәліметтер базасы: LocalStorage және деректерді сақтау әдістері. Жобаны қорғау.",
+                    "Робототехника және AR: Мобильді қосымшаны сынақтан өткізу."
+                ];
+                planInput.value = samplePlans[Math.floor(Math.random() * samplePlans.length)];
+            });
+
+            renderCalendar();
+        });
+    </script>
 </body>
 </html>

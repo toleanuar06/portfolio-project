@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПРАКТИКАЛЫҚ ЖҰМЫС №6: Студенттердің үлгерім кестесі</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Практикалық сабақ №6 талаптарындағы арнайы CSS стильдері -->
+    <style>
+        .table-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 3-қадам: Кестеге CSS қосу */
+        table {
+            width: 85%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #475569;
+            padding: 12px 16px;
+            text-align: center;
+        }
+
+        /* 4-қадам: Кесте тақырыбын сәндеу */
+        th {
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* 5-қадам: Жұп жолдарды сәндеу */
+        tr:nth-child(even) {
+            background-color: #1e293b;
+        }
+
+        /* 6-қадам: Hover эффектісін қосу */
+        tr:hover {
+            background-color: #334155;
+            transition: background-color 0.2s;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-card .val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= НАВИГАЦИЯ (HEADER) ================= -->
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i> AT.<span>Portfolio</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Мәзірді ашу">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="menu" id="nav-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Басты бет</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Блог</a>
+            <a href="portfolio.html"><i class="fas fa-briefcase"></i> Жобалар</a>
+            <a href="practices.html"><i class="fas fa-flask"></i> Зертхана (№8, 10, 11)</a>
+            <a href="students.html" class="active"><i class="fas fa-table"></i> Үлгерім кестесі (№6)</a>
+            <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Күнтізбе</a>
+            <a href="calcul.html"><i class="fas fa-calculator"></i> Калькулятор</a>
+        </nav>
+    </header>
+
+    <!-- ================= НЕГІЗГІ МАЗМҰН (MAIN) ================= -->
+    <main class="hero">
+        
+        <div class="table-container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+                <div>
+                    <h1 class="section-title">Студенттердің үлгерім кестесі</h1>
+                    <p style="color: var(--text-muted);">
+                        ПРАКТИКАЛЫҚ ЖҰМЫС №6: Кестелер құру және оларды CSS-пен сәндеу (border, padding, nth-child, hover, margin auto).
+                    </p>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn" id="open-add-modal" style="background:#10b981; border-color:#10b981;">
+                        <i class="fas fa-user-plus"></i> Жаңа студент қосу
+                    </button>
+                    <button class="btn outline" id="reset-students-btn" title="Базаны бастапқы мәндерге қайтару">
+                        <i class="fas fa-undo"></i> Бастапқы мәндер
+                    </button>
+                </div>
+            </div>
+
+            <!-- Статистикалық көрсеткіштер (Базадан есептеледі) -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div style="color:var(--text-muted); font-size:0.85rem;">Жалпы студент саны:</div>
+                    <div class="val" id="stat-count">0</div>
+                </div>
+                <div class="stat-card">
+                    <div style="color:var(--text-muted); font-size:0.85rem;">Орташа үлгерім балы:</div>
+                    <div class="val" id="stat-avg" style="color:#10b981;">0</div>
+                </div>
+                <div class="stat-card">
+                    <div style="color:var(--text-muted); font-size:0.85rem;">Ең жоғары баға:</div>
+                    <div class="val" id="stat-max" style="color:#f59e0b;">0</div>
+                </div>
+                <div class="stat-card">
+                    <div style="color:var(--text-muted); font-size:0.85rem;">Сапа көрсеткіші (≥90):</div>
+                    <div class="val" id="stat-quality" style="color:#38bdf8;">0%</div>
+                </div>
+            </div>
+
+            <!-- Іздеу жолағы -->
+            <div style="margin-bottom: 16px;">
+                <input type="text" id="search-student" class="input-box" style="max-width:350px;" placeholder="Аты-жөні немесе тобы бойынша іздеу...">
+            </div>
+
+            <!-- Кесте (Тапсырма шарты: 5 баған, кемінде 7-10 студент) -->
+            <div class="table-responsive">
+                <table id="students-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Аты-жөні</th>
+                            <th>Тобы</th>
+                            <th>Пән</th>
+                            <th>Бағасы</th>
+                            <th>Әрекет</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-tbody">
+                        <!-- Студенттер осында жүктеледі -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:20px; font-size:0.9rem; color:var(--text-muted); border-top:1px solid var(--border-color); padding-top:16px;">
+                <i class="fas fa-info-circle" style="color:var(--primary);"></i> 
+                Бұл кесте деректері браузердің <strong>LocalStorage мәліметтер базасында</strong> сақталады. Жаңа енгізілген студенттер бетті қайта жүктегенде немесе компьютерді өшіріп-қосқанда да сақталып қалады.
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Жаңа студент қосу модаль терезесі -->
+    <div id="add-student-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:110; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; max-width:480px; width:100%; padding:28px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="color:#fff;"><i class="fas fa-user-plus" style="color:var(--primary);"></i> Жаңа студент қосу</h3>
+                <button id="close-add-modal" style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="add-student-form">
+                <label style="display:block; margin-bottom:4px; font-size:0.85rem; color:var(--text-muted);">Аты-жөні:</label>
+                <input type="text" id="stu-name" class="input-box" style="max-width:100%;" placeholder="Мысалы: Айгүл Қасым" required>
+
+                <label style="display:block; margin-bottom:4px; font-size:0.85rem; color:var(--text-muted);">Тобы:</label>
+                <input type="text" id="stu-group" class="input-box" style="max-width:100%;" placeholder="Мысалы: ИТ-21" required>
+
+                <label style="display:block; margin-bottom:4px; font-size:0.85rem; color:var(--text-muted);">Пән:</label>
+                <input type="text" id="stu-subject" class="input-box" style="max-width:100%;" placeholder="Мысалы: Web-технология" required>
+
+                <label style="display:block; margin-bottom:4px; font-size:0.85rem; color:var(--text-muted);">Бағасы (0-100):</label>
+                <input type="number" id="stu-grade" class="input-box" style="max-width:100%;" min="0" max="100" placeholder="95" required>
+
+                <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:14px;">
+                    <button type="button" class="btn outline" id="cancel-add-btn">Болдырмау</button>
+                    <button type="submit" class="btn" style="background:#10b981; border-color:#10b981;">Қосу</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= ТӨМЕНГІ ДЕРЕКТЕМЕ (FOOTER) ================= -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+        <p style="font-size: 0.85rem; color: #64748b;">
+            Практикалық сабақ №6: Студенттердің үлгерім кестесі (HTML table және CSS стильдеуі).
+        </p>
+    </footer>
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tbody = document.getElementById('students-tbody');
+            const searchInput = document.getElementById('search-student');
+            const addModal = document.getElementById('add-student-modal');
+            const openModalBtn = document.getElementById('open-add-modal');
+            const closeModalBtn = document.getElementById('close-add-modal');
+            const cancelBtn = document.getElementById('cancel-add-btn');
+            const addForm = document.getElementById('add-student-form');
+            const resetBtn = document.getElementById('reset-students-btn');
+
+            function renderTable(searchTerm = '') {
+                const students = window.db.getStudents();
+                const filtered = students.filter(s => 
+                    s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    s.group.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    s.subject.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+
+                tbody.innerHTML = '';
+                filtered.forEach((s, idx) => {
+                    const tr = document.createElement('tr');
+                    const badgeClass = s.grade >= 90 ? 'grade-high' : 'grade-med';
+                    tr.innerHTML = `
+                        <td>${idx + 1}</td>
+                        <td style="font-weight:600; text-align:left; padding-left:20px;">${s.name}</td>
+                        <td>${s.group}</td>
+                        <td>${s.subject}</td>
+                        <td><span class="grade-badge ${badgeClass}">${s.grade}</span></td>
+                        <td>
+                            <button onclick="deleteStudentHandler(${s.id})" style="background:none; border:none; color:#ef4444; cursor:pointer;" title="Студентті өшіру">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                // Статистиканы есептеу
+                document.getElementById('stat-count').textContent = students.length;
+                if (students.length > 0) {
+                    const sum = students.reduce((acc, curr) => acc + Number(curr.grade), 0);
+                    const avg = (sum / students.length).toFixed(1);
+                    const max = Math.max(...students.map(s => Number(s.grade)));
+                    const quality = ((students.filter(s => s.grade >= 90).length / students.length) * 100).toFixed(0);
+
+                    document.getElementById('stat-avg').textContent = avg;
+                    document.getElementById('stat-max').textContent = max;
+                    document.getElementById('stat-quality').textContent = quality + '%';
+                } else {
+                    document.getElementById('stat-avg').textContent = '0';
+                    document.getElementById('stat-max').textContent = '0';
+                    document.getElementById('stat-quality').textContent = '0%';
+                }
+            }
+
+            window.deleteStudentHandler = function(id) {
+                if (confirm("Бұл студентті тізімнен өшіруді растайсыз ба?")) {
+                    window.db.deleteStudent(id);
+                    renderTable(searchInput.value);
+                }
+            };
+
+            searchInput.addEventListener('input', (e) => {
+                renderTable(e.target.value);
+            });
+
+            openModalBtn.addEventListener('click', () => addModal.style.display = 'flex');
+            closeModalBtn.addEventListener('click', () => addModal.style.display = 'none');
+            cancelBtn.addEventListener('click', () => addModal.style.display = 'none');
+
+            addForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('stu-name').value;
+                const group = document.getElementById('stu-group').value;
+                const subject = document.getElementById('stu-subject').value;
+                const grade = document.getElementById('stu-grade').value;
+
+                window.db.addStudent({ name, group, subject, grade });
+                addForm.reset();
+                addModal.style.display = 'none';
+                renderTable();
+                alert("Жаңа студент деректер қорына сәтті қосылды!");
+            });
+
+            resetBtn.addEventListener('click', () => {
+                if (confirm("Студенттер тізімін бастапқы күйіне қайтарасыз ба?")) {
+                    window.db.resetStudents();
+                    renderTable();
+                }
+            });
+
+            renderTable();
+        });
+    </script>
+</body>
+</html>

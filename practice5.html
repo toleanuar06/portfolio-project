@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мультимедиа және Формалар - Ануар Төле</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; transition: background-color 0.5s; }
+        section { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Менің мультимедиалық портфолиом</h1>
+    </header>
+    
+    <main>
+        <!-- Практикалық жұмыс 1: Видео және Аудио қосу -->
+        <section id="media-section">
+            <h2>Менің таныстырылым видеом</h2>
+            <video width="640" height="360" controls poster="images/poster.jpg">
+                <source src="video/presentation.mp4" type="video/mp4">
+                <source src="video/presentation.webm" type="video/webm">
+                Сіздің браузеріңіз HTML5 video тегін қолдамайды.
+            </video>
+
+            <h2>Фондық әуен</h2>
+            <audio controls>
+                <source src="audio/background-music.mp3" type="audio/mpeg">
+                Сіздің браузеріңіз HTML5 audio тегін қолдамайды.
+            </audio>
+        </section>
+
+        <!-- Практикалық жұмыс 2: Атыңды енгізгенде "Сәлем, name" шығару -->
+        <section id="hello-section">
+            <h2>Атыңызды енгізіңіз</h2>
+            <input type="text" id="name" placeholder="Атыңыз">
+            <button onclick="sayHello()">Көрсету</button>
+        </section>
+
+        <!-- Практикалық жұмыс 3: Айнымалы қолдану -->
+        <section id="calc-section">
+            <h2>Екі санның қосындысы</h2>
+            <button onclick="calculate()">Есептеу</button>
+        </section>
+
+        <!-- Практикалық жұмыс 4: Form жасау -->
+        <section id="form-section">
+            <h2>Мәлімет енгізу формасы</h2>
+            <form>
+                Аты: <input type="text" id="username"><br><br>
+                Жасы: <input type="number" id="age"><br><br>
+                <button type="button" onclick="showInfo()">Көрсету</button>
+            </form>
+        </section>
+
+        <!-- Үй жұмысы: Date және Color Picker қолдану -->
+        <section id="picker-section">
+            <h2>Күн және түс таңдау</h2>
+            <form>
+                Күн таңдаңыз: <input type="date" id="date"><br><br>
+                Түс таңдаңыз: <input type="color" id="color"><br><br>
+                <button type="button" onclick="showHomeworkInfo()">Көрсету</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Портфолио. Барлық құқықтар қорғалған.</p>
+    </footer>
+
+    <!-- JavaScript функциялары -->
+    <script>
+        // Практикалық жұмыс 2
+        function sayHello() {
+            let name = document.getElementById("name").value;
+            alert("Сәлем, " + name);
+        }
+
+        // Практикалық жұмыс 3
+        function calculate() {
+            let a = 5;
+            let b = 3;
+            let result = a + b;
+            alert("Нәтиже: " + result);
+        }
+
+        // Практикалық жұмыс 4
+        function showInfo() {
+            let name = document.getElementById("username").value;
+            let age = document.getElementById("age").value;
+            alert("Аты: " + name + "\nЖасы: " + age);
+        }
+
+        // Үй жұмысы
+        function showHomeworkInfo() {
+            let selectedDate = document.getElementById("date").value;
+            let selectedColor = document.getElementById("color").value;
+            alert("Таңдалған күн: " + selectedDate + "\nТаңдалған түс: " + selectedColor);
+            document.body.style.backgroundColor = selectedColor;
+        }
+    </script>
+</body>
+</html>

@@ -3,621 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио - Ануар Төле</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+    <title>Жобалар мен Зерттеулер - Ануар Төле</title>
     
-    <!-- Навигация -->
-    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="font-bold text-2xl text-blue-500 tracking-wider">AT.</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Басты бет</a>
-                    <a href="blog.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Блог</a>
-                    <a href="portfolio.html" class="text-blue-400 border-b-2 border-blue-400 font-medium px-1 py-5">Портфолио</a>
-                    <a href="calendar.html" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gray-400 px-1 py-5 transition-all">Күнтізбе</a>
-                </nav>
-            </div>
-        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .project-thumb {
+            height: 180px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-thumb i {
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.8;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-thumb i {
+            transform: scale(1.1);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .project-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .project-title {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 16px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= НАВИГАЦИЯ (HEADER) ================= -->
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i> AT.<span>Portfolio</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Мәзірді ашу">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="menu" id="nav-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Басты бет</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Блог</a>
+            <a href="portfolio.html" class="active"><i class="fas fa-briefcase"></i> Жобалар</a>
+            <a href="practices.html"><i class="fas fa-flask"></i> Зертхана (№8, 10, 11)</a>
+            <a href="students.html"><i class="fas fa-table"></i> Үлгерім кестесі (№6)</a>
+            <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Күнтізбе</a>
+            <a href="calcul.html"><i class="fas fa-calculator"></i> Калькулятор</a>
+        </nav>
     </header>
 
-    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
+    <!-- ================= НЕГІЗГІ МАЗМҰН (MAIN) ================= -->
+    <main class="hero">
         
-        <!-- Тақырып -->
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-white mb-4">Менің Жобаларым</h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Университеттегі оқуым мен жеке ізденістерім барысында жасаған негізгі жобаларым. Мұнда веб-әзірлеуден бастап, робототехника мен білім беру қосымшаларына дейінгі жұмыстарымды көре аласыз.</p>
+        <div>
+            <h1 class="section-title">Менің Жобаларым & Зерттеулерім</h1>
+            <p style="color: var(--text-muted);">
+                Университеттегі оқуым, дипломдық зерттеуім және жеке IT жобаларым. Мұнда толықтырылған шынайылықтан (AR) бастап, веб-қосымшалар мен IoT құрылғыларына дейінгі жұмыстарым көрсетілген.
+            </p>
         </div>
 
-        <!-- Жобалар торы -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div class="projects-grid">
             
             <!-- Жоба 1: AR Book -->
-            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
-                <div class="h-48 bg-gray-700 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-blue-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-vr-cardboard text-6xl text-white opacity-50"></i>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">Дипломдық жоба</div>
+            <div class="project-card">
+                <div class="project-thumb">
+                    <i class="fas fa-vr-cardboard"></i>
+                    <span class="project-badge" style="background:#2563eb;">Дипломдық жоба</span>
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-white mb-2">AR Book</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">Толықтырылған шынайылық (AR) технологияларын білім саласында қолдану. Оқушылардың сабақты визуалды қабылдауын арттыруға арналған зерттеу жобасы.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">AR/VR</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">EdTech</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">3D Модельдеу</span>
+                <div class="project-content">
+                    <h3 class="project-title">AR Book (Толықтырылған шынайылық)</h3>
+                    <p class="project-desc">
+                        Білім беру оқулықтарына арналған 3D модельдер мен интерактивті визуализация. Оқушылар смартфон немесе планшет камерасы арқылы кітап бетіндегі маркерлерді сканерлеп, физикалық және биологиялық нысандарды көлемді көре алады.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">AR/VR</span>
+                        <span class="tech-tag">EdTech</span>
+                        <span class="tech-tag">3D Модельдеу</span>
+                        <span class="tech-tag">Unity</span>
                     </div>
-                    <div class="flex gap-3">
-                        <button onclick="openProjectModal('arbook')" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none">Толық көру</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Жоба 2: Интерактивті Күнтізбе -->
-            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
-                <div class="h-48 bg-gray-700 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border-b border-gray-700">
-                        <i class="far fa-calendar-alt text-6xl text-gray-500 opacity-50"></i>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">Жеке тапсырма</div>
-                </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-white mb-2">Smart Lesson Planner</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">Мұғалімдерге арналған интерактивті сабақ жоспарлау күнтізбесі. Жасанды интеллект (AI) арқылы автоматты түрде жоспар құру функциясы бар.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">JavaScript</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Tailwind CSS</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">LocalStorage</span>
-                    </div>
-                    <div class="flex gap-3">
-                        <!-- Демо нұсқа күнтізбе бетіне апарады -->
-                        <a href="calendar.html" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors">Демо нұсқа</a>
-                        <!-- GitHub батырмасы жұмыс істейді -->
-                        <a href="https://github.com/toleanuar" target="_blank" class="w-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors" title="Кодты көру"><i class="fab fa-github"></i></a>
-                    </div>
+                    <button class="btn" onclick="openModal('arbook')"><i class="fas fa-info-circle"></i> Толық сипаттама</button>
                 </div>
             </div>
 
-            <!-- Жоба 3: IoT (Arduino) -->
-            <div class="bg-gray-800 rounded-2xl border border-gray-700 overflow-hidden group hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 shadow-lg flex flex-col">
-                <div class="h-48 bg-gray-700 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-teal-900 to-gray-900 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-microchip text-6xl text-teal-500 opacity-50"></i>
-                    </div>
-                    <div class="absolute top-3 right-3 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">Аппараттық жасақтама</div>
+            <!-- Жоба 2: IoT Мектеп Қоңырауы -->
+            <div class="project-card">
+                <div class="project-thumb">
+                    <i class="fas fa-bell"></i>
+                    <span class="project-badge" style="background:#10b981;">Аппараттық жасақтама</span>
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold text-white mb-2">IoT Мектеп Қоңырауы</h3>
-                    <p class="text-gray-400 text-sm mb-4 flex-grow">Arduino және ESP32 негізінде жасалған автоматты қоңырау жүйесі. Python арқылы ДК-мен байланысып, кесте бойынша жұмыс істейді.</p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Arduino (C++)</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Python 3.11</span>
-                        <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">Wokwi</span>
+                <div class="project-content">
+                    <h3 class="project-title">IoT Автоматтандырылған Мектеп Қоңырауы</h3>
+                    <p class="project-desc">
+                        Arduino және RTC модульдері негізінде сабақ кестесіне сәйкес мектеп қоңырауын автоматты түрде соғуға арналған ақылды жүйе. Демалыстар мен ауысымдарды өздігінен ескереді.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">Wokwi Симулятор</span>
                     </div>
-                    <div class="flex gap-3">
-                        <button onclick="openProjectModal('iot')" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-center py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none">Схеманы көру</button>
-                        <!-- GitHub батырмасы жұмыс істейді -->
-                        <a href="https://github.com/toleanuar" target="_blank" class="w-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors" title="Кодты көру"><i class="fab fa-github"></i></a>
-                    </div>
+                    <button class="btn" onclick="openModal('iot')"><i class="fas fa-info-circle"></i> Толық сипаттама</button>
                 </div>
             </div>
-            
+
+            <!-- Жоба 3: Интерактивті Оқу Күнтізбесі -->
+            <div class="project-card">
+                <div class="project-thumb">
+                    <i class="fas fa-calendar-check"></i>
+                    <span class="project-badge" style="background:#f59e0b;">Web-қосымша</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Интерактивті Оқу Күнтізбесі (AI Planner)</h3>
+                    <p class="project-desc">
+                        Мұғалімдер мен оқушыларға сабақ кестесі мен тақырыптарын күн бойынша жоспарлауға арналған веб-сервис. Жасанды интеллект көмегімен сабақ жоспарын автоматты генерациялайды және сақтайды.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript ES6</span>
+                        <span class="tech-tag">LocalStorage</span>
+                        <span class="tech-tag">CSS Grid</span>
+                        <span class="tech-tag">AI Генератор</span>
+                    </div>
+                    <a href="calendar.html" class="btn" style="background:#f59e0b; border-color:#f59e0b;"><i class="fas fa-external-link-alt"></i> Күнтізбені ашу</a>
+                </div>
+            </div>
+
+            <!-- Жоба 4: Студенттердің үлгерім жүйесі -->
+            <div class="project-card">
+                <div class="project-thumb">
+                    <i class="fas fa-user-graduate"></i>
+                    <span class="project-badge" style="background:#8b5cf6;">Деректер базасы</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Студенттердің үлгерім кестесі (CRUD)</h3>
+                    <p class="project-desc">
+                        Студенттердің тізімін, бағаларын, топтары мен пәндерін басқаруға арналған электронды журнал. Іздеу, сүзу, орташа баллды лезде есептеу және жергілікті базаға сақтау мүмкіндігі бар.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML5 Table</span>
+                        <span class="tech-tag">CSS3 Styling</span>
+                        <span class="tech-tag">Database</span>
+                        <span class="tech-tag">Analytics</span>
+                    </div>
+                    <a href="students.html" class="btn" style="background:#8b5cf6; border-color:#8b5cf6;"><i class="fas fa-table"></i> Кестені көру</a>
+                </div>
+            </div>
+
+            <!-- Жоба 5: Студенттер калькуляторы -->
+            <div class="project-card">
+                <div class="project-thumb">
+                    <i class="fas fa-calculator"></i>
+                    <span class="project-badge" style="background:#06b6d4;">Алгоритмдеу</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Студенттің орташа баға калькуляторы</h3>
+                    <p class="project-desc">
+                        Пәндердің қорытынды бағалары негізінде орташа мәнді шығарып, студенттің курстан өткенін немесе қайта тапсыру қажеттігін анықтайтын алгоритмдік құрал.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript Functions</span>
+                        <span class="tech-tag">Conditional Logic</span>
+                        <span class="tech-tag">Validation</span>
+                    </div>
+                    <a href="calcul.html" class="btn" style="background:#06b6d4; border-color:#06b6d4;"><i class="fas fa-calculator"></i> Калькуляторды ашу</a>
+                </div>
+            </div>
+
         </div>
 
-        <!-- ПРАКТИКАЛЫҚ ЖҰМЫС №8 БӨЛІМІ -->
-        <div class="border-t border-gray-800 pt-16 mb-16">
-            
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                
-                <!-- 1-тапсырма: Видео және Аудио (Мультимедиа) -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-lg">
-                    <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-3"><i class="fas fa-play-circle text-blue-400 mr-2"></i> Мультимедиа (Видео және Аудио)</h3>
-                    
-                    <div class="mb-6">
-                        <p class="text-sm text-gray-400 mb-2">Менің таныстырылым видеом:</p>
-                        <!-- Видео элементі -->
-                        <video class="w-full rounded-lg shadow-md border border-gray-700" controls poster="poster.jpg">
-                            <source src="D:\portfolio\Student_speaking_in_computer_lab_20261019173859.mp4" type="video/mp4">
-                            <source src="video/presentation.webm" type="video/webm">
-                            Сіздің браузеріңіз HTML5 video тегін қолдамайды.
-                        </video>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-gray-400 mb-2">Фондық әуен:</p>
-                        <!-- Аудио элементі -->
-                        <audio class="w-full" controls>
-                            <source src="audio/background-music.mp3" type="audio/mpeg">
-                            Сіздің браузеріңіз HTML5 audio тегін қолдамайды.
-                        </audio>
-                    </div>
-                </div>
-
-                <!-- 2, 3, 4 және Үй тапсырмалары: JS Формалары -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-lg transition-colors duration-300" id="hw-card">
-                    <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-3"><i class="fas fa-keyboard text-blue-400 mr-2"></i> Интерактивті Формалар (JS)</h3>
-                    
-                    <div class="space-y-6">
-                        <!-- Практика 2: Атын сұрау -->
-                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
-                            <p class="text-sm font-semibold text-blue-400 mb-2">Практика №2: Сәлемдесу</p>
-                            <div class="flex gap-3">
-                                <input type="text" id="pr2-name" placeholder="Атыңызды жазыңыз" class="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
-                                <button onclick="sayHello()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition">Көрсету</button>
-                            </div>
-                            <p id="pr2-result" class="text-green-400 text-sm mt-2 font-medium hidden"></p>
-                        </div>
-
-                        <!-- Практика 4: Аты мен Жасы -->
-                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
-                            <p class="text-sm font-semibold text-blue-400 mb-2">Практика №4: Мәлімет енгізу</p>
-                            <div class="grid grid-cols-2 gap-3 mb-3">
-                                <input type="text" id="pr4-username" placeholder="Аты" class="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
-                                <input type="number" id="pr4-age" placeholder="Жасы" class="bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-blue-500">
-                            </div>
-                            <button onclick="showInfo()" class="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition">Мәліметті шығару</button>
-                            <p id="pr4-result" class="text-green-400 text-sm mt-2 font-medium hidden whitespace-pre-line"></p>
-                        </div>
-
-                        <!-- Үй жұмысы: Date & Color Picker -->
-                        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
-                            <p class="text-sm font-semibold text-purple-400 mb-2">Үй жұмысы: Date & Color Picker</p>
-                            <div class="flex items-center gap-4 mb-3">
-                                <div class="flex-1">
-                                    <label class="text-xs text-gray-400 block mb-1">Күн таңдаңыз:</label>
-                                    <input type="date" id="hw-date" class="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-600 focus:outline-none focus:border-purple-500 cursor-pointer">
-                                </div>
-                                <div>
-                                    <label class="text-xs text-gray-400 block mb-1">Түс:</label>
-                                    <input type="color" id="hw-color" value="#1f2937" class="h-10 w-14 rounded cursor-pointer border-0 bg-transparent">
-                                </div>
-                            </div>
-                            <button onclick="applyHomework()" class="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg transition">Қолдану</button>
-                            <p id="hw-result" class="text-white text-sm mt-2 font-medium hidden whitespace-pre-line"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ПРАКТИКАЛЫҚ ЖҰМЫС БӨЛІМІНІҢ СОҢЫ -->
-
-        <!-- ========================================= -->
-        <!-- ПРАКТИКАЛЫҚ ЖҰМЫС №10 БӨЛІМІ -->
-        <!-- ========================================= -->
-        <div class="border-t border-gray-800 pt-16 mb-16" id="practice10">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full border border-blue-500/20">
-                    Оқиғалармен жұмыс: батырмаға әрекет қосу
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 mb-3">Практикалық сабақ №10</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-base">
-                    HTML5 форма элементтері (<code class="text-blue-300">date</code>, <code class="text-blue-300">color</code>), оқиғалармен жұмыс (<code class="text-blue-300">click</code>), DOM manipulation және «Жасырын санды тап» ойыны.
-                </p>
-                <div class="mt-4">
-                    <a href="practice10.html" class="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg border border-gray-700 transition">
-                        <i class="fas fa-external-link-alt text-xs"></i> Жеке бетте ашу (practice10.html)
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
-                
-                <!-- 1-Тапсырма: Күн және түс таңдау -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between" id="p10-card">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
-                            <h3 class="text-xl font-bold text-white flex items-center">
-                                <i class="fas fa-palette text-blue-400 mr-3"></i> 1. Күн және түс таңдау
-                            </h3>
-                            <span class="text-xs bg-blue-600/20 text-blue-400 border border-blue-500/30 px-2.5 py-1 rounded-full font-mono">Date & Color</span>
-                        </div>
-                        <p class="text-sm text-gray-300 mb-6">
-                            Күн мен түс таңдап, батырманы басқанда мәндерді экранға шығару және нәтиже блогының шекара түсін динамикалық өзгерту.
-                        </p>
-
-                        <form class="space-y-5" onsubmit="event.preventDefault();">
-                            <div>
-                                <label for="p10-date" class="block text-sm font-medium text-gray-300 mb-2">
-                                    <i class="far fa-calendar-alt text-blue-400 mr-1.5"></i> Күн таңдаңыз:
-                                </label>
-                                <input type="date" id="p10-date" value="2026-03-10" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-blue-500 transition cursor-pointer">
-                            </div>
-
-                            <div>
-                                <label for="p10-color" class="block text-sm font-medium text-gray-300 mb-2">
-                                    <i class="fas fa-eye-dropper text-blue-400 mr-1.5"></i> Түс таңдаңыз:
-                                </label>
-                                <div class="flex items-center gap-3">
-                                    <input type="color" id="p10-color" value="#ff0000" class="w-16 h-11 bg-gray-900 rounded-xl border border-gray-700 cursor-pointer p-1">
-                                    <span id="p10-color-hex" class="text-sm font-mono text-gray-400 bg-gray-900 px-3 py-1.5 rounded-lg border border-gray-700">#ff0000</span>
-                                </div>
-                            </div>
-
-                            <button type="button" onclick="showPractical10Info()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-3 px-4 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
-                                <i class="fas fa-check-circle"></i> Көрсету
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Нәтиже блогы -->
-                    <div id="p10-result-box" class="mt-8 p-5 rounded-xl bg-gray-900/90 border-2 border-dashed border-gray-700 transition-all duration-300">
-                        <p class="text-xs text-gray-400 uppercase tracking-wider mb-2 font-semibold">Экранға шығарылған нәтиже:</p>
-                        <div id="p10-screen-output" class="text-base text-gray-200 font-mono space-y-1">
-                            <div>Таңдалған күн: <span class="text-blue-400 font-semibold" id="p10-out-date">2026-03-10</span></div>
-                            <div>Таңдалған түс: <span class="text-red-400 font-semibold" id="p10-out-color">#ff0000</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2-Тапсырма: «Жасырын санды тап» ойыны -->
-                <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between relative overflow-hidden" id="p10-game-card">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
-                            <h3 class="text-xl font-bold text-white flex items-center">
-                                <i class="fas fa-gamepad text-purple-400 mr-3"></i> 2. «Жасырын санды тап» ойыны
-                            </h3>
-                            <span class="text-xs bg-purple-600/20 text-purple-400 border border-purple-500/30 px-2.5 py-1 rounded-full font-mono">1 - 20 аралығы</span>
-                        </div>
-                        <p class="text-sm text-gray-300 mb-6">
-                            1 мен 20 аралығында жасырылған санды табыңыз. Дұрыс тапқанда экранда түрлі түсті шарлар түседі! 🎈
-                        </p>
-
-                        <div class="space-y-5">
-                            <div>
-                                <label for="game-guess-input" class="block text-sm font-medium text-gray-300 mb-2">
-                                    Сан енгізіңіз (1 - 20):
-                                </label>
-                                <div class="flex gap-3">
-                                    <input type="number" id="game-guess-input" min="1" max="20" placeholder="Мысалы: 12" class="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-purple-500 text-lg font-semibold text-center transition">
-                                    <button type="button" onclick="checkSecretNumber()" class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-2.5 rounded-xl font-medium shadow-lg transition transform active:scale-95 flex items-center gap-2">
-                                        <i class="fas fa-paper-plane"></i> Тексеру
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-between items-center text-xs text-gray-400 px-1">
-                                <span>Әрекет саны: <strong id="game-attempts" class="text-purple-400 text-sm font-mono">0</strong></span>
-                                <button type="button" onclick="restartSecretGame()" class="text-gray-400 hover:text-white transition flex items-center gap-1.5 py-1 px-2 rounded-lg hover:bg-gray-700">
-                                    <i class="fas fa-redo-alt text-xs"></i> Жаңадан бастау
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ойынның хабарламасы мен нәтижесі -->
-                    <div id="game-message-box" class="mt-8 p-5 rounded-xl bg-gray-900/90 border border-gray-700 min-h-[90px] flex items-center justify-center text-center transition-all duration-300">
-                        <div id="game-status-text" class="text-gray-400 text-sm">
-                            <i class="fas fa-info-circle mr-1.5 text-purple-400"></i> Сан енгізіп, «Тексеру» батырмасын басыңыз
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Бақылау сұрақтары блогы -->
-            <div class="bg-gray-800 p-8 sm:p-10 rounded-2xl border border-gray-700 shadow-xl max-w-6xl mx-auto">
-                <div class="flex items-center gap-3 border-b border-gray-700 pb-4 mb-6">
-                    <i class="fas fa-question-circle text-blue-400 text-2xl"></i>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Бақылау сұрақтары мен жауаптары</h3>
-                        <p class="text-sm text-gray-400">№10 практикалық сабақ бойынша бақылау сұрақтарының шешімі</p>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-700/80">
-                        <h4 class="text-sm font-semibold text-blue-400 mb-1.5">
-                            1. input тегінің type="date" және type="color" түрлері веб-бетте қандай интерфейс элементтерін көрсетеді?
-                        </h4>
-                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                            <strong>Жауабы:</strong> <code class="text-blue-300">type="date"</code> күнтізбе виджетін (Date picker) көрсетеді, ол күн/ай/жылды ыңғайлы таңдап, <code class="text-gray-400">YYYY-MM-DD</code> мәнін береді. Ал <code class="text-blue-300">type="color"</code> түстер палитрасын (Color picker) ашатын батырманы береді және таңдалған түстің HEX кодын (мысалы: <code class="text-gray-400">#ff0000</code>) қайтарады.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-700/80">
-                        <h4 class="text-sm font-semibold text-blue-400 mb-1.5">
-                            2. JavaScript арқылы енгізу өрісіндегі мәнді алу үшін қандай қасиет (property) қолданылады?
-                        </h4>
-                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                            <strong>Жауабы:</strong> <code class="text-yellow-400 font-bold">.value</code> қасиеті қолданылады (мысалы, <code class="text-gray-300 font-mono text-xs">document.getElementById("id").value</code>).
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-700/80">
-                        <h4 class="text-sm font-semibold text-blue-400 mb-1.5">
-                            3. innerHTML қасиетінің textContent қасиетінен басты айырмашылығы неде?
-                        </h4>
-                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                            <strong>Жауабы:</strong> <code class="text-blue-300 font-bold">innerHTML</code> HTML тегтерін өңдеп, DOM элементі ретінде визуализациялайды. Ал <code class="text-blue-300 font-bold">textContent</code> тек таза мәтін (raw text) ретінде қабылдап, HTML тегтерін орындамай мәтін күйінде шығарады.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-700/80">
-                        <h4 class="text-sm font-semibold text-blue-400 mb-1.5">
-                            4. Шартты операторлар (if...else) бұл тапсырмада не үшін қажет болды?
-                        </h4>
-                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                            <strong>Жауабы:</strong> «Жасырын санды тап» ойынында енгізілген санды компьютердің жасырын санымен салыстырып, 3 түрлі тармақ бойынша шешім шығару үшін: 1) тең болса — жеңіс; 2) кіші болса — «Сан үлкенірек»; 3) үлкен болса — «Сан кішірек».
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-900/80 p-4 rounded-xl border border-gray-700/80">
-                        <h4 class="text-sm font-semibold text-blue-400 mb-1.5">
-                            5. Нәтиженің шекара түсін динамикалық түрде өзгерту (resultBox.style.borderColor = selectedColor) DOM бағдарламалауында қандай деңгейге жатады?
-                        </h4>
-                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
-                            <strong>Жауабы:</strong> Бұл — DOM элементтерінің стилін JavaScript арқылы динамикалық басқару деңгейіне жатады (<strong>DOM Style Manipulation / CSSOM</strong>).
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Кәсіби Дағдылар Бөлімі -->
-
-        <!-- ========================================= -->
-        <!-- ТАПСЫРМА: ТІРКЕЛУ ФОРМАСЫ ЖӘНЕ ВАЛИДАЦИЯ -->
-        <!-- ========================================= -->
-        <div class="border-t border-gray-800 pt-16 mb-16" id="registration-section">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
-                    JavaScript Form Validation & Event Handling
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-4 mb-3">Тапсырма: Тіркелу формасы</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-base">
-                    Аты-жөні, <code class="text-emerald-300">type="email"</code>, <code class="text-emerald-300">minlength="8"</code>, <code class="text-emerald-300">required</code> өрістері, <code class="text-emerald-300">submit</code> оқиғасын өңдеу және қате жағдайларын тестілеу.
-                </p>
-                <div class="mt-4">
-                    <a href="registration.html" class="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg border border-gray-700 transition">
-                        <i class="fas fa-external-link-alt text-xs"></i> Жеке бетте ашу (registration.html)
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto mb-10">
-                
-                <!-- Форма блогы (7 баған) -->
-                <div class="lg:col-span-7 bg-gray-800 p-8 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
-                            <h3 class="text-xl font-bold text-white flex items-center">
-                                <i class="fas fa-user-plus text-emerald-400 mr-3"></i> Тіркелу формасы
-                            </h3>
-                            <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full font-mono">Валидация</span>
-                        </div>
-
-                        <form id="portfolio-reg-form" novalidate class="space-y-5">
-                            <div>
-                                <label for="port-fullname" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
-                                    <span><i class="fas fa-user text-emerald-400 mr-1.5"></i> Аты-жөні:</span>
-                                    <span class="text-xs text-red-400">* required</span>
-                                </label>
-                                <input type="text" id="port-fullname" required minlength="2" placeholder="Мысалы: Ануар Төле" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
-                                <p id="port-fullname-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
-                                    <i class="fas fa-exclamation-circle"></i> <span>Аты-жөніңізді енгізіңіз (кемінде 2 таңба)</span>
-                                </p>
-                            </div>
-
-                            <div>
-                                <label for="port-email" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
-                                    <span><i class="fas fa-envelope text-emerald-400 mr-1.5"></i> Email:</span>
-                                    <span class="text-xs text-red-400">* type="email"</span>
-                                </label>
-                                <input type="email" id="port-email" required placeholder="toleanuar@gmail.com" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
-                                <p id="port-email-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
-                                    <i class="fas fa-exclamation-circle"></i> <span>Дұрыс email форматын жазыңыз (name@example.com)</span>
-                                </p>
-                            </div>
-
-                            <div>
-                                <label for="port-password" class="block text-sm font-medium text-gray-300 mb-1.5 flex justify-between">
-                                    <span><i class="fas fa-lock text-emerald-400 mr-1.5"></i> Құпиясөз:</span>
-                                    <span class="text-xs text-red-400">* minlength="8"</span>
-                                </label>
-                                <input type="password" id="port-password" required minlength="8" placeholder="Кемінде 8 таңба" class="w-full bg-gray-900 text-white px-4 py-2.5 rounded-xl border border-gray-700 focus:outline-none focus:border-emerald-500 transition">
-                                <p id="port-password-err" class="text-red-400 text-xs mt-1.5 hidden flex items-center gap-1">
-                                    <i class="fas fa-exclamation-circle"></i> <span>Құпиясөз тым қысқа! Кемінде 8 таңба болуы шарт.</span>
-                                </p>
-                            </div>
-
-                            <button type="submit" id="port-submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
-                                <i class="fas fa-check-circle"></i> Тіркелу (Submit оқиғасы)
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Сәтті хабарлама -->
-                    <div id="port-success-box" class="hidden mt-6 p-5 rounded-xl bg-emerald-950/40 border-2 border-emerald-500 transition-all duration-300">
-                        <div class="flex items-start gap-3">
-                            <i class="fas fa-check-circle text-emerald-400 text-2xl mt-0.5"></i>
-                            <div>
-                                <h4 class="text-base font-bold text-emerald-400">Құттықтаймыз! Тіркелу сәтті аяқталды!</h4>
-                                <p class="text-xs text-gray-300 mt-1">Пайдаланушы: <strong id="port-res-name" class="text-white"></strong> | Email: <strong id="port-res-email" class="text-emerald-300"></strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Қате жағдайларын сынау (5 баған) -->
-                <div class="lg:col-span-5 space-y-5">
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl">
-                        <h4 class="text-base font-bold text-white mb-2 flex items-center">
-                            <i class="fas fa-vial text-purple-400 mr-2"></i> Қате жағдайларын сынау
-                        </h4>
-                        <p class="text-xs text-gray-400 mb-4">
-                            Кемінде екі қате жағдайды тестілеу үшін дайын сценарийлер:
-                        </p>
-
-                        <div class="space-y-3">
-                            <button type="button" onclick="testPortPasswordErr()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-red-950/30 border border-gray-700 hover:border-red-500/50 transition">
-                                <div class="flex justify-between items-center mb-0.5">
-                                    <span class="text-xs font-bold text-red-400">1-қате: Қысқа құпиясөз</span>
-                                    <span class="text-[10px] bg-red-500/20 text-red-300 px-1.5 py-0.5 rounded">&lt; 8 таңба</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">"12345" енгізіп, тексеру</p>
-                            </button>
-
-                            <button type="button" onclick="testPortEmailErr()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-amber-950/30 border border-gray-700 hover:border-amber-500/50 transition">
-                                <div class="flex justify-between items-center mb-0.5">
-                                    <span class="text-xs font-bold text-amber-400">2-қате: Қате Email</span>
-                                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded">no @ sign</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">"anuar-mail-ru" форматын сынау</p>
-                            </button>
-
-                            <button type="button" onclick="testPortSuccess()" class="w-full text-left p-3 rounded-xl bg-gray-900 hover:bg-emerald-950/30 border border-gray-700 hover:border-emerald-500/50 transition">
-                                <div class="flex justify-between items-center mb-0.5">
-                                    <span class="text-xs font-bold text-emerald-400">Сәтті жағдай: Барлығы дұрыс</span>
-                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded">Valid</span>
-                                </div>
-                                <p class="text-[11px] text-gray-400">Дұрыс мәліметтерді толтырып жіберу</p>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Түсіндірме карточкасы -->
-                    <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow-xl text-xs space-y-2">
-                        <h4 class="font-bold text-white text-sm border-b border-gray-700 pb-2 mb-2 flex items-center">
-                            <i class="fas fa-info-circle text-blue-400 mr-2"></i> Орындалған тексерулер
-                        </h4>
-                        <p class="text-gray-300">✔ <strong>required:</strong> Бос өрістерді жіберуге тыйым салынды.</p>
-                        <p class="text-gray-300">✔ <strong>type="email":</strong> Электронды поштаның форматы қадағаланады.</p>
-                        <p class="text-gray-300">✔ <strong>minlength="8":</strong> 8 символдан аз құпиясөзге ескерту беріледі.</p>
-                        <p class="text-gray-300">✔ <strong>submit оқиғасы:</strong> <code class="text-emerald-300">e.preventDefault()</code> арқылы ұсталып, экранда жасыл хабарлама шығады.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="border-t border-gray-800 pt-16">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-white mb-4">Техникалық Дағдылар</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Менің меңгерген бағдарламалау тілдерім мен құралдарым.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center"><i class="fas fa-code text-blue-400 mr-3"></i> Бағдарламалау & Web</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Python 3.11</span> <span>80%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>HTML5 / CSS3 / JavaScript</span> <span>85%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Kotlin & Android Studio</span> <span>60%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-blue-500 h-2 rounded-full" style="width: 60%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-800 p-6 rounded-2xl border border-gray-700">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center"><i class="fas fa-server text-blue-400 mr-3"></i> База, Желі & Құрылғылар</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>PostgreSQL / SQL</span> <span>75%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 75%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Cisco Packet Tracer (Желі)</span> <span>70%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 70%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1 text-sm text-gray-300"><span>Arduino / ESP32</span> <span>65%</span></div>
-                            <div class="w-full bg-gray-700 rounded-full h-2"><div class="bg-indigo-500 h-2 rounded-full" style="width: 65%"></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- ЖОБАЛАР ТУРАЛЫ МОДАЛЬДЫ ТЕРЕЗЕ -->
-    <div id="project-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[100] px-4 transition-opacity duration-300 opacity-0">
-        <div class="bg-gray-800 rounded-2xl w-full max-w-3xl max-h-[85vh] overflow-y-auto border border-gray-700 shadow-2xl transform scale-95 transition-transform duration-300 relative" id="project-modal-content">
-            <button id="close-project-modal" class="absolute top-5 right-6 text-gray-400 hover:text-white text-2xl focus:outline-none transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="p-8 md:p-10">
-                <span id="p-modal-tag" class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3 block">Категория</span>
-                <h2 id="p-modal-title" class="text-3xl font-bold text-white mb-6">Тақырып</h2>
-                
-                <div id="p-modal-body" class="text-gray-300 leading-relaxed space-y-4 text-base">
-                    <!-- Мазмұн осында түседі -->
-                </div>
-            </div>
+    <!-- Модаль сипаттамасы -->
+    <div id="project-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:110; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:18px; max-width:650px; width:100%; padding:30px; position:relative; box-shadow:0 15px 50px rgba(0,0,0,0.7);">
+            <button id="close-modal-btn" style="position:absolute; top:20px; right:20px; background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;"><i class="fas fa-times"></i></button>
+            <span id="modal-tag" style="font-size:0.8rem; font-weight:700; color:var(--accent); text-transform:uppercase;"></span>
+            <h2 id="modal-title" style="color:#fff; font-size:1.6rem; margin:8px 0 16px 0;"></h2>
+            <div id="modal-body" style="color:#cbd5e1; font-size:0.95rem; line-height:1.7;"></div>
         </div>
     </div>
 
-    <footer class="bg-gray-900 border-t border-gray-800 py-8 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-            <span class="font-bold text-2xl text-gray-700 mb-4">AT.</span>
-            <p class="text-gray-500 text-sm">
-                &copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.
-            </p>
-        </div>
+    <!-- ================= ТӨМЕНГІ ДЕРЕКТЕМЕ (FOOTER) ================= -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+        <p style="font-size: 0.85rem; color: #64748b;">
+            Инновациялық білім беру жобалары мен цифрлық технологиялар портфолиосы.
+        </p>
     </footer>
-    
+
+    <script src="db.js"></script>
     <script src="script.js"></script>
-    
-    <!-- Модальды басқаруға арналған скрипт -->
     <script>
-        const projectData = {
+        const projectDetails = {
             'arbook': {
-                title: 'AR Book - Толықтырылған шынайылық',
-                tag: 'Дипломдық жоба',
-                content: '<p class="text-lg text-gray-200">Бұл жоба білім беру жүйесіне жаңа технологияларды енгізуге бағытталған. Толықтырылған шынайылық (AR) арқылы оқушылар күрделі нысандарды (мысалы, физикалық құбылыстар, биологиялық жасушалар) 3D форматында көре алады.</p><h4 class="text-white font-bold text-xl mt-6 mb-3">Жобаның негізгі мақсаттары:</h4><ul class="list-disc pl-5 text-gray-400 space-y-2"><li>Кітап бетіндегі арнайы маркерлерді камера арқылы тану;</li><li>Оқушыларға арналған интерактивті 3D модельдерді визуализациялау;</li><li>Материалды бекітуге арналған тест және сұрақ-жауап бөлімі.</li></ul>'
+                tag: 'Дипломдық жоба (ЕҰУ)',
+                title: 'AR Book - Толықтырылған шынайылық оқулығы',
+                content: `<p>Бұл ғылыми-зерттеу және әзірлеу жұмысы оқушылардың сабақты қабылдау сапасын арттыруға бағытталған.</p>
+                          <h4 style="color:#fff; margin:14px 0 6px 0;">Негізгі функциялары:</h4>
+                          <ul style="padding-left:20px; color:var(--text-muted); line-height:1.6;">
+                              <li>Оқулық бетіндегі графикалық маркерлерді лезде тану;</li>
+                              <li>Интерактивті 3D нысандарды барлық қырынан бұрып көру мүмкіндігі;</li>
+                              <li>Физикалық және биологиялық құбылыстарды анимациялық тәсілмен көрсету;</li>
+                              <li>Оқу материалын бекітуге арналған жылдам тестілеу модулі.</li>
+                          </ul>`
             },
             'iot': {
-                title: 'IoT Мектеп Қоңырауы',
-                tag: 'Аппараттық жасақтама',
-                content: '<p class="text-lg text-gray-200">Бұл жоба мектептегі қоңырау жүйесін толық автоматтандыруға арналған. Жүйе Arduino микроконтроллері және Wokwi симуляторы арқылы басқарылады.</p><h4 class="text-white font-bold text-xl mt-6 mb-3">Техникалық сипаттамасы:</h4><ul class="list-disc pl-5 text-gray-400 space-y-2"><li>Қоңырау кестесін Python 3.11 бағдарламасы арқылы басқару;</li><li>Жұмыс күндері мен демалыстарды автоматты түрде есепке алу (RTC модулі арқылы);</li><li>Дисплейге (LCD) келесі сабаққа дейінгі уақытты шығару;</li><li>ESP32 арқылы жүйені қашықтан бақылау мүмкіндігі.</li></ul>'
+                tag: 'Аппараттық инженерия & IoT',
+                title: 'IoT Негізіндегі Автоматтандырылған Қоңырау',
+                content: `<p>Мектептегі дәстүрлі қоңырау соғу жүйесін толық автоматтандыратын аппараттық-бағдарламалық кешен.</p>
+                          <h4 style="color:#fff; margin:14px 0 6px 0;">Техникалық құрылымы:</h4>
+                          <ul style="padding-left:20px; color:var(--text-muted); line-height:1.6;">
+                              <li>Arduino микроконтроллері және нақты уақытты есептейтін RTC сағат модулі;</li>
+                              <li>Қоңырау кестесін өзгертуге арналған ыңғайлы веб-интерфейс;</li>
+                              <li>Мереке күндері мен демалыстарды автоматты түрде өткізіп жіберу алгоритмі;</li>
+                              <li>Wokwi ортасында өткізілген сәтті виртуалды сынақтар.</li>
+                          </ul>`
             }
         };
 
         const modal = document.getElementById('project-modal');
-        const modalContent = document.getElementById('project-modal-content');
-        const closeBtn = document.getElementById('close-project-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
 
-        function openProjectModal(projectId) {
-            const data = projectData[projectId];
-            document.getElementById('p-modal-title').textContent = data.title;
-            document.getElementById('p-modal-tag').textContent = data.tag;
-            document.getElementById('p-modal-body').innerHTML = data.content;
-
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-            }, 10);
-            document.body.style.overflow = 'hidden';
+        function openModal(id) {
+            const data = projectDetails[id];
+            if(data) {
+                document.getElementById('modal-tag').textContent = data.tag;
+                document.getElementById('modal-title').textContent = data.title;
+                document.getElementById('modal-body').innerHTML = data.content;
+                modal.style.display = 'flex';
+            }
         }
 
-        const closeModal = () => {
-            modal.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }, 300);
-        };
-
-        closeBtn.addEventListener('click', closeModal);
+        closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+            if(e.target === modal) modal.style.display = 'none';
         });
     </script>
 </body>

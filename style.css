@@ -1,197 +1,656 @@
-/* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* ==========================================================================
+   style.css - Бірыңғай Портфолио Стили (HTML5 & CSS3 Flexbox)
+   Ануар Төле | ЕҰУ Информатика мұғалімі & IT маман
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Базалық баптаулар */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #273548;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --accent: #38bdf8;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --success: #10b981;
+    --danger: #ef4444;
+}
 
 body {
-    font-family: 'Inter', sans-serif;
-    scroll-behavior: smooth;
-}
-
-/* Блог бөлімінің арнайы стильдері */
-.custom-blog-section {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (max-width: 768px) {
-    .custom-blog-section {
-        flex-direction: column;
-    }
-}
-
-.blog-sidebar {
-    flex: 1;
-    min-width: 250px;
-    background-color: #1f2937;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    height: fit-content;
-    position: sticky;
-    top: 5rem;
-}
-
-.blog-category-btn {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0.75rem 0;
-    color: #9ca3af;
-    background: none;
-    border: none;
-    border-bottom: 1px solid #374151;
-    cursor: pointer;
-    text-align: left;
-    transition: color 0.3s ease;
-    font-size: 1rem;
-}
-
-.blog-category-btn:hover, .blog-category-btn.active {
-    color: #60a5fa;
-}
-
-.blog-category-btn:last-child {
-    border-bottom: none;
-}
-
-.blog-main-content {
-    flex: 3;
-}
-
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.semantic-article {
-    background-color: #1f2937;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    transition: transform 0.3s ease, opacity 0.4s ease;
-    border: 1px solid #374151;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    animation: fadeIn 0.5s ease forwards;
 }
 
-.semantic-article:hover {
-    transform: translateY(-5px);
-    border-color: #60a5fa;
+/* ==========================================================================
+   ПРАКТИКАЛЫҚ САБАҚ №4: FLEXBOX СТРУКТУРАСЫ МЕН НАВИГАЦИЯ
+   ========================================================================== */
+.site-header {
+    background-color: #1e293b;
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.5px;
+    text-decoration: none;
 }
 
-/* Күнтізбе стильдері */
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    background-color: #374151;
-    border: 1px solid #374151;
-    border-radius: 0.5rem;
+.logo span {
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.menu a:hover, .menu a.active {
+    color: #ffffff;
+    background-color: rgba(59, 130, 246, 0.15);
+    border-bottom: 2px solid var(--primary);
+}
+
+/* Мобильді мәзір батырмасы */
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Негізгі бөлік (hero) */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 36px 20px;
+}
+
+/* Визитка карточкасы (Flexbox) */
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 36px;
+    background: linear-gradient(145deg, #1e293b 0%, #151f30 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    position: relative;
     overflow: hidden;
 }
 
-.calendar-day-header {
-    background-color: #111827;
-    color: #9ca3af;
-    text-align: center;
-    padding: 0.5rem;
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+}
+
+.card-left {
+    flex: 2;
+}
+
+.card-left h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.role {
+    font-size: 1.2rem;
+    color: var(--accent);
     font-weight: 600;
-    font-size: 0.875rem;
+    margin-bottom: 14px;
 }
 
-.calendar-day {
-    background-color: #1f2937;
-    min-height: 100px;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    position: relative;
+.desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+    max-width: 650px;
 }
 
-.calendar-day:hover {
-    background-color: #374151;
+.card-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.calendar-day.empty {
-    background-color: #111827;
-    cursor: default;
-}
-
-.calendar-day .date-num {
-    font-weight: 600;
-    color: #e5e7eb;
-}
-
-.has-plan-indicator {
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color: #10b981;
+/* Аватар */
+.avatar {
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
-    margin-top: 5px;
+    border: 4px solid var(--primary);
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f172a;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-/* =========================================
-   ПРАКТИКАЛЫҚ САБАҚ №10: ШАРЛАР АНИМАЦИЯСЫ
-========================================= */
-.balloon-item {
-    position: fixed;
-    top: -100px;
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    opacity: 0.95;
-    box-shadow: inset -6px -6px 14px rgba(0, 0, 0, 0.25), inset 6px 6px 14px rgba(255, 255, 255, 0.45), 0 10px 20px rgba(0, 0, 0, 0.2);
-    animation: balloonFall linear forwards;
-    z-index: 9999;
+.avatar:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.6);
+}
+
+/* Батырмалар */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    border: 1px solid var(--primary);
+    text-decoration: none;
+    color: #ffffff;
+    background-color: var(--primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.45);
+}
+
+.btn.outline {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.btn.outline:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+}
+
+/* ==========================================================================
+   ДАҒДЫЛАР (SKILLS) БӨЛІМІ (Flexbox & Wrap)
+   ========================================================================== */
+.skills {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 48px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.skill {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+}
+
+.skill i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.skill:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    background-color: rgba(59, 130, 246, 0.12);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* ==========================================================================
+   МУЛЬТИМЕДИА БӨЛІМІ (Практикалық сабақ №8)
+   ========================================================================== */
+.multimedia-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.media-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.video-container {
+    flex: 2;
+    min-width: 320px;
+    background-color: #0f172a;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.audio-container {
+    flex: 1;
+    min-width: 280px;
+    background-color: #0f172a;
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.audio-container audio {
+    width: 100%;
+    margin-top: 14px;
+}
+
+/* ==========================================================================
+   БАЙЛАНЫС БӨЛІМІ
+   ========================================================================== */
+.contacts {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.contact-item {
+    background-color: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.25s ease;
+}
+
+.contact-item i {
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.contact-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* ==========================================================================
+   ПРАКТИКАЛЫҚ САБАҚ №6: КЕСТЕЛЕР ЖӘНЕ ОЛАРДЫ СТИЛЬДЕУ
+   ========================================================================== */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 14px 18px;
+    text-align: center;
+}
+
+th {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #172337;
+}
+
+tr:hover {
+    background-color: #293a52;
+    transition: background-color 0.2s ease;
+}
+
+.grade-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.grade-high {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.grade-med {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+}
+
+/* ==========================================================================
+   ИНТЕРАКТИВТІ ПРАКТИКАЛАР ЖӘНЕ ОЙЫНДАР (Сабақ №8, №10, №11)
+   ========================================================================== */
+.practice-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: border-color 0.3s;
+}
+
+.practice-card h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-box {
+    width: 100%;
+    max-width: 380px;
+    padding: 10px 14px;
+    background-color: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    margin: 8px 0 14px 0;
+}
+
+.input-box:focus {
+    border-color: var(--primary);
+}
+
+.result-box {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background-color: #0f172a;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    color: #38bdf8;
+    font-weight: 500;
+}
+
+/* «Жасырын санды тап» ойын стилі */
+.game-container {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 2px dashed var(--primary);
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    width: 24px;
+    height: 32px;
+    border-radius: 50%;
+    animation: floatUp 3s ease-in infinite;
     pointer-events: none;
 }
 
-.balloon-item::after {
-    content: "";
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 18px;
-    background: rgba(255, 255, 255, 0.7);
+@keyframes floatUp {
+    0% { transform: translateY(150px) scale(0.5); opacity: 1; }
+    100% { transform: translateY(-300px) scale(1.2); opacity: 0; }
 }
 
-.balloon-item::before {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 5px;
-    border-radius: 2px;
-    background: inherit;
-    filter: brightness(0.85);
+/* Тауарлар карточкалары (Сабақ №11) */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
 }
 
-@keyframes balloonFall {
-    0% {
-        top: -100px;
-        transform: rotate(0deg) scale(0.9);
-        opacity: 1;
+.product-card {
+    background-color: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.product-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.hot-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+    background-color: #0b1120;
+    border-top: 1px solid var(--border-color);
+    padding: 24px 20px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: auto;
+}
+
+.site-footer p {
+    margin: 4px 0;
+}
+
+/* ==========================================================================
+   АДАПТИВТІ МАКЕТ (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 14px 18px;
     }
-    30% {
-        transform: rotate(12deg) scale(1.05);
+
+    .mobile-toggle {
+        display: block;
     }
-    70% {
-        transform: rotate(-15deg) scale(1);
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1e293b;
+        flex-direction: column;
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+        gap: 8px;
     }
-    100% {
-        top: 105vh;
-        transform: rotate(20deg) scale(0.95);
-        opacity: 0.9;
+
+    .menu.show {
+        display: flex;
+    }
+
+    .card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .card::before {
+        width: 100%;
+        height: 6px;
+        top: 0;
+        left: 0;
+    }
+
+    .card-left h1 {
+        font-size: 2rem;
+    }
+
+    .actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 8px;
     }
 }

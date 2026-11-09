@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студент калькуляторы - Ануар Төле</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .calc-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-box {
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10b981;
+            color: #10b981;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .fail-box {
+            background-color: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= НАВИГАЦИЯ (HEADER) ================= -->
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i> AT.<span>Portfolio</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Мәзірді ашу">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="menu" id="nav-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Басты бет</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Блог</a>
+            <a href="portfolio.html"><i class="fas fa-briefcase"></i> Жобалар</a>
+            <a href="practices.html"><i class="fas fa-flask"></i> Зертхана (№8, 10, 11)</a>
+            <a href="students.html"><i class="fas fa-table"></i> Үлгерім кестесі (№6)</a>
+            <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Күнтізбе</a>
+            <a href="calcul.html" class="active"><i class="fas fa-calculator"></i> Калькулятор</a>
+        </nav>
+    </header>
+
+    <!-- ================= НЕГІЗГІ МАЗМҰН (MAIN) ================= -->
+    <main class="hero">
+        
+        <div class="calc-wrapper">
+            <h2 class="section-title" style="text-align:center; display:block;"><i class="fas fa-calculator" style="color:var(--primary);"></i> Студент калькуляторы</h2>
+            <p style="color:var(--text-muted); text-align:center; margin-bottom:24px; font-size:0.95rem;">
+                3 пән бойынша қорытынды бағаларды енгізіп, орташа балды және емтиханнан өту деңгейін анықтаңыз.
+            </p>
+
+            <form onsubmit="event.preventDefault(); processGrades();">
+                <div style="margin-bottom:14px;">
+                    <label for="grade1" style="display:block; font-size:0.9rem; color:var(--text-muted); margin-bottom:4px;">1-ші пән бағасы (0 - 100):</label>
+                    <input type="number" id="grade1" class="input-box" style="max-width:100%;" min="0" max="100" placeholder="Мысалы: 90" required>
+                </div>
+
+                <div style="margin-bottom:14px;">
+                    <label for="grade2" style="display:block; font-size:0.9rem; color:var(--text-muted); margin-bottom:4px;">2-ші пән бағасы (0 - 100):</label>
+                    <input type="number" id="grade2" class="input-box" style="max-width:100%;" min="0" max="100" placeholder="Мысалы: 85" required>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label for="grade3" style="display:block; font-size:0.9rem; color:var(--text-muted); margin-bottom:4px;">3-ші пән бағасы (0 - 100):</label>
+                    <input type="number" id="grade3" class="input-box" style="max-width:100%;" min="0" max="100" placeholder="Мысалы: 95" required>
+                </div>
+
+                <button type="submit" class="btn" style="width:100%; font-size:1.05rem;">
+                    <i class="fas fa-chart-bar"></i> Орташа бағаны есептеу
+                </button>
+            </form>
+
+            <div id="resultMessage" style="display:none;"></div>
+        </div>
+
+    </main>
+
+    <!-- ================= ТӨМЕНГІ ДЕРЕКТЕМЕ (FOOTER) ================= -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+        <p style="font-size: 0.85rem; color: #64748b;">
+            Студенттердің академиялық үлгерімін талдауға арналған алгоритмдік калькулятор.
+        </p>
+    </footer>
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function calculateAverage(a, b, c) {
+            return (a + b + c) / 3;
+        }
+
+        function processGrades() {
+            let g1 = parseFloat(document.getElementById('grade1').value);
+            let g2 = parseFloat(document.getElementById('grade2').value);
+            let g3 = parseFloat(document.getElementById('grade3').value);
+            let resultDiv = document.getElementById('resultMessage');
+
+            if (isNaN(g1) || isNaN(g2) || isNaN(g3)) {
+                resultDiv.innerHTML = "Барлық бағаларды толық әрі дұрыс енгізіңіз!";
+                resultDiv.className = "fail-box";
+                resultDiv.style.display = "block";
+                return;
+            }
+
+            let avg = calculateAverage(g1, g2, g3);
+            let roundedAvg = avg.toFixed(2);
+
+            resultDiv.style.display = "block";
+
+            if (avg >= 50) {
+                resultDiv.innerHTML = `<i class="fas fa-check-circle"></i> Орташа баға: <strong>${roundedAvg}</strong> <br> <span style="font-size:1.2rem; font-weight:bold;">Құттықтаймыз, Өттіңіз!</span>`;
+                resultDiv.className = "success-box";
+            } else {
+                resultDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Орташа баға: <strong>${roundedAvg}</strong> <br> <span style="font-size:1.2rem; font-weight:bold;">Қайта тапсыру қажет (Рейтинг төмен)</span>`;
+                resultDiv.className = "fail-box";
+            }
+        }
+    </script>
+</body>
+</html>

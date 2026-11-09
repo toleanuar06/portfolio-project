@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивті Зертхана (№8, №10, №11) - Ануар Төле</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .tabs-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            background-color: #1e293b;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            z-index: 9999;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: fall 3s ease-out forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .oop-console {
+            background-color: #0b1120;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #38bdf8;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= НАВИГАЦИЯ (HEADER) ================= -->
+    <header class="site-header">
+        <a href="index.html" class="logo">
+            <i class="fas fa-code"></i> AT.<span>Portfolio</span>
+        </a>
+
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Мәзірді ашу">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="menu" id="nav-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Басты бет</a>
+            <a href="blog.html"><i class="fas fa-blog"></i> Блог</a>
+            <a href="portfolio.html"><i class="fas fa-briefcase"></i> Жобалар</a>
+            <a href="practices.html" class="active"><i class="fas fa-flask"></i> Зертхана (№8, 10, 11)</a>
+            <a href="students.html"><i class="fas fa-table"></i> Үлгерім кестесі (№6)</a>
+            <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Күнтізбе</a>
+            <a href="calcul.html"><i class="fas fa-calculator"></i> Калькулятор</a>
+        </nav>
+    </header>
+
+    <!-- ================= НЕГІЗГІ МАЗМҰН (MAIN) ================= -->
+    <main class="hero">
+        
+        <div>
+            <h1 class="section-title">Интерактивті Зертхана</h1>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">
+                Мұнда Практикалық сабақтардың (№8 Мультимедиа & Формалар, №10 Оқиғалар & Ойын, №11 Тауарлар сүзгісі & ООП Кластар) толық функционалы бір жерде жинақталған.
+            </p>
+        </div>
+
+        <!-- Қойындылар (Tabs) -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="tab-pr8"><i class="fas fa-play-circle"></i> Сабақ №8: Формалар & Медиа</button>
+            <button class="tab-btn" data-tab="tab-pr10"><i class="fas fa-gamepad"></i> Сабақ №10: «Жасырын сан» ойыны</button>
+            <button class="tab-btn" data-tab="tab-pr11"><i class="fas fa-shopping-cart"></i> Сабақ №11: Тауарлар дүкені</button>
+            <button class="tab-btn" data-tab="tab-oop"><i class="fas fa-cubes"></i> Сабақ №11: ООП & Кластар</button>
+        </div>
+
+        <!-- ================= САБАҚ №8: ФОРМАЛАР МЕН МЕДИА ================= -->
+        <div class="tab-content active" id="tab-pr8">
+            
+            <!-- Тапсырма 2 -->
+            <div class="practice-card">
+                <h3><i class="fas fa-comment-dots" style="color:var(--primary);"></i> Тапсырма 2: Атыңды енгізгенде "Сәлем, name" шығару</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Пайдаланушы өз атын енгізеді. Батырманы басқанда alert және экранға сәлемдесу шығады.</p>
+                <div style="margin-top:12px;">
+                    <input type="text" id="pr8-name" class="input-box" placeholder="Атыңызды жазыңыз...">
+                    <button class="btn" onclick="runSayHello()"><i class="fas fa-check"></i> Көрсету</button>
+                </div>
+                <div id="pr8-hello-result" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- Тапсырма 3 -->
+            <div class="practice-card">
+                <h3><i class="fas fa-calculator" style="color:var(--accent);"></i> Тапсырма 3: Айнымалы қолдану (Екі санның қосындысы)</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Екі айнымалы берілген (a = 5, b = 3). Сондай-ақ сандарды еркін өзгертіп көруге болады.</p>
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; align-items:center;">
+                    <input type="number" id="pr8-num1" class="input-box" value="5" style="width:100px;">
+                    <span style="font-size:1.4rem; color:var(--primary); font-weight:bold;">+</span>
+                    <input type="number" id="pr8-num2" class="input-box" value="3" style="width:100px;">
+                    <button class="btn" onclick="runCalculateSum()"><i class="fas fa-equals"></i> Есептеу</button>
+                </div>
+                <div id="pr8-sum-result" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- Тапсырма 4 -->
+            <div class="practice-card">
+                <h3><i class="fas fa-user-edit" style="color:#10b981;"></i> Тапсырма 4: Form жасау (Аты және Жасы)</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Пайдаланушы аты мен жасын енгізеді, батырманы басқанда деректер жүйеге қабылданады.</p>
+                <form id="pr8-form" style="margin-top:12px;" onsubmit="event.preventDefault(); runShowInfo();">
+                    <div style="display:flex; gap:14px; flex-wrap:wrap;">
+                        <div>
+                            <label style="display:block; font-size:0.85rem; color:var(--text-muted);">Аты:</label>
+                            <input type="text" id="pr8-username" class="input-box" placeholder="Атыңыз...">
+                        </div>
+                        <div>
+                            <label style="display:block; font-size:0.85rem; color:var(--text-muted);">Жасы:</label>
+                            <input type="number" id="pr8-age" class="input-box" placeholder="Жасыңыз...">
+                        </div>
+                    </div>
+                    <button type="button" class="btn" onclick="runShowInfo()"><i class="fas fa-id-card"></i> Көрсету</button>
+                </form>
+                <div id="pr8-info-result" class="result-box" style="display:none;"></div>
+            </div>
+
+            <!-- Үй жұмысы -->
+            <div class="practice-card" id="pr8-picker-card">
+                <h3><i class="fas fa-palette" style="color:#f59e0b;"></i> Үй жұмысы: Date және Color Picker қолдану</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">Күн мен түсті таңдап, батырманы басқанда экранға нәтиже шығады және карточканың фоны сол түске боялады.</p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:14px; align-items:center;">
+                    <div>
+                        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Күн таңдаңыз:</label>
+                        <input type="date" id="pr8-date" class="input-box" value="2026-03-10">
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Түс таңдаңыз:</label>
+                        <input type="color" id="pr8-color" value="#2563eb" style="width:70px; height:42px; border:none; cursor:pointer; border-radius:8px; background:none;">
+                    </div>
+                    <button class="btn" onclick="runHomeworkPicker()"><i class="fas fa-eye"></i> Көрсету & Қолдану</button>
+                </div>
+                <div id="pr8-picker-result" class="result-box" style="display:none;"></div>
+            </div>
+
+        </div>
+
+        <!-- ================= САБАҚ №10: «ЖАСЫРЫН САНДЫ ТАП» ОЙЫНЫ ================= -->
+        <div class="tab-content" id="tab-pr10">
+            <div class="practice-card">
+                <h3><i class="fas fa-sliders-h" style="color:var(--primary);"></i> Практикалық сабақ №10: DOM Manipulation & Color</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem;">
+                    Таңдалған түс бойынша нәтиже блогының шекарасын динамикалық өзгерту (<code>resultBox.style.borderColor = selectedColor</code>).
+                </p>
+                <div style="display:flex; gap:14px; align-items:center; margin-top:12px; flex-wrap:wrap;">
+                    <input type="color" id="dom-color" value="#10b981" style="width:60px; height:40px; cursor:pointer; border:none; border-radius:8px;">
+                    <button class="btn" onclick="applyBorderColor()"><i class="fas fa-paint-brush"></i> Шекара түсін өзгерту</button>
+                </div>
+                <div id="dom-demo-box" class="result-box" style="margin-top:14px; border: 3px solid #10b981; padding: 16px;">
+                    Бұл блоктың шекара түсі JavaScript DOM manipulation арқылы басқарылады.
+                </div>
+            </div>
+
+            <!-- ОЙЫН КОНТЕЙНЕРІ -->
+            <div class="game-container" id="guess-game-box">
+                <h2 style="color:#ffffff; font-size:2rem; margin-bottom:8px;">🎯 «Жасырын санды тап» ойыны</h2>
+                <p style="color:var(--text-muted); max-width:550px; margin:0 auto 20px auto;">
+                    Компьютер <strong>1 мен 20</strong> аралығында бір санды жасырды. Дұрыс санды тауып көріңіз! Тапқан кезде түрлі-түсті шарлар түседі!
+                </p>
+
+                <div style="display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;">
+                    <input type="number" id="guess-input" class="input-box" style="width:140px; font-size:1.4rem; text-align:center;" min="1" max="20" placeholder="?">
+                    <button class="btn" onclick="makeGuess()" style="font-size:1.1rem; padding:12px 26px;">
+                        <i class="fas fa-dice"></i> Тексеру
+                    </button>
+                    <button class="btn outline" onclick="resetGuessGame()" style="font-size:0.9rem;">
+                        <i class="fas fa-redo"></i> Қайта бастау
+                    </button>
+                </div>
+
+                <div id="game-message" style="margin-top:24px; font-size:1.3rem; font-weight:700; color:#38bdf8; min-height:40px;">
+                    Сан енгізіп, «Тексеру» батырмасын басыңыз!
+                </div>
+
+                <div style="margin-top:16px; color:var(--text-muted); font-size:0.9rem;">
+                    Әрекет саны: <span id="attempt-count" style="color:#fff; font-weight:bold;">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= САБАҚ №11: ТАУАРЛАР ДҮКЕНІ ================= -->
+        <div class="tab-content" id="tab-pr11">
+            <div class="practice-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; margin-bottom:16px;">
+                    <div>
+                        <h2 class="section-title">Практикалық сабақ №11: Тауарлар каталогы</h2>
+                        <p style="color:var(--text-muted);">
+                            Пайдаланушы әрекеттеріне жауап беру (onclick, event, мәтін/түс өзгерту, reduce, сүзгілер).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Басқару батырмалары (Тапсырмалар 1, 2, 3, 4, 5, 6) -->
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+                    <!-- 1 тапсырма -->
+                    <button class="btn" id="btn-change-colors" onclick="changeAllButtonsColor()">
+                        <i class="fas fa-fill-drip"></i> 1. Батырмалар түсін өзгерту
+                    </button>
+
+                    <!-- 2 тапсырма -->
+                    <button class="btn" id="btn-add-hot" onclick="toggleHotBadge()">
+                        <i class="fas fa-fire"></i> 2. «🔥 Hot» жазуын қосу
+                    </button>
+
+                    <!-- 3 тапсырма -->
+                    <button class="btn" id="btn-show-cheap" onclick="showCheapProducts()">
+                        <i class="fas fa-tag"></i> 3. Тек &lt;300$ арзан тауарлар
+                    </button>
+
+                    <!-- 4 тапсырма -->
+                    <button class="btn" id="btn-increase-price" onclick="increasePricesBy50()">
+                        <i class="fas fa-chart-line"></i> 4. Бағаны +50% арттыру
+                    </button>
+
+                    <!-- 5 тапсырма -->
+                    <button class="btn" id="btn-most-expensive" onclick="showMostExpensiveProduct()">
+                        <i class="fas fa-crown"></i> 5. Ең қымбат тауар (reduce)
+                    </button>
+
+                    <!-- 6 тапсырма -->
+                    <button class="btn" id="btn-over-500" onclick="showProductsOver500()">
+                        <i class="fas fa-gem"></i> 6. &gt;500$ тауарлар бөлек
+                    </button>
+
+                    <!-- Қалпына келтіру -->
+                    <button class="btn outline" onclick="resetProductsCatalog()">
+                        <i class="fas fa-undo"></i> Бастапқы күйі
+                    </button>
+                </div>
+
+                <!-- Ең қымбат немесе сүзгіден өткен тауар туралы хабарлама -->
+                <div id="product-action-info" class="result-box" style="display:none; margin-bottom:20px;"></div>
+
+                <!-- Тауарлар карточкалары торы -->
+                <div class="product-grid" id="products-catalog-grid">
+                    <!-- JavaScript арқылы салынады -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= САБАҚ №11: ООП & КЛАСТАР ================= -->
+        <div class="tab-content" id="tab-oop">
+            <div class="practice-card">
+                <h2 class="section-title">Практикалық сабақ №11: Объектіге бағытталған бағдарламалау (ООП)</h2>
+                <p style="color:var(--text-muted); margin-bottom:16px;">
+                    JavaScript ES6 кластары (<code>class</code>, <code>extends</code>, <code>constructor</code>, <code>get/set</code>, инкапсуляция, <code>calculateHourlyWage()</code>, <code>sort()</code>).
+                </p>
+
+                <!-- ООП Әрекеттері -->
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+                    <button class="btn" onclick="runSchoolSystemDemo()">
+                        <i class="fas fa-school"></i> 1. Мектеп жүйесі (Person, Teacher, Student)
+                    </button>
+                    <button class="btn" onclick="runHumanWorkerDemo()">
+                        <i class="fas fa-user-tie"></i> 2. Human, Student, Worker (Сағаттық жалақы)
+                    </button>
+                    <button class="btn" onclick="sortStudentsDemo()">
+                        <i class="fas fa-sort-numeric-down"></i> 3. 10 студентті бағасы бойынша өсу ретімен сұрыптау
+                    </button>
+                    <button class="btn" onclick="sortWorkersDemo()">
+                        <i class="fas fa-sort-amount-down"></i> 4. 10 жұмысшыны жалақысы бойынша кему ретімен сұрыптау
+                    </button>
+                </div>
+
+                <div style="color:var(--text-muted); font-size:0.9rem;">
+                    <i class="fas fa-terminal"></i> Нәтижелер консолі:
+                </div>
+                <div id="oop-output-console" class="oop-console">// ООП нәтижелерін көру үшін жоғарыдағы батырмалардың бірін басыңыз...</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ================= ТӨМЕНГІ ДЕРЕКТЕМЕ (FOOTER) ================= -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Ануар Төле. Барлық құқықтар қорғалған.</p>
+        <p style="font-size: 0.85rem; color: #64748b;">
+            Практикалық сабақтар №8, №10, №11 біріктірілген интерактивті зертхана.
+        </p>
+    </footer>
+
+    <script src="db.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Қойындыларды ауыстыру логикасы
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                const targetId = btn.getAttribute('data-tab');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        /* ==========================================================================
+           САБАҚ №8 ФУНКЦИЯЛАРЫ
+           ========================================================================== */
+        function runSayHello() {
+            let name = document.getElementById("pr8-name").value;
+            if(!name || name.trim() === "") {
+                alert("Өтінемін, атыңызды енгізіңіз!");
+                return;
+            }
+            alert("Сәлем, " + name);
+            const res = document.getElementById("pr8-hello-result");
+            res.style.display = "block";
+            res.textContent = "Сәлем, " + name + "!";
+        }
+
+        function runCalculateSum() {
+            let a = parseFloat(document.getElementById("pr8-num1").value) || 0;
+            let b = parseFloat(document.getElementById("pr8-num2").value) || 0;
+            let result = a + b;
+            alert("Нәтиже: " + result);
+            const res = document.getElementById("pr8-sum-result");
+            res.style.display = "block";
+            res.textContent = `Екі санның қосындысы: ${a} + ${b} = ${result}`;
+        }
+
+        function runShowInfo() {
+            let name = document.getElementById("pr8-username").value;
+            let age = document.getElementById("pr8-age").value;
+            if(!name || !age) {
+                alert("Атыңызды және жасыңызды толтырыңыз!");
+                return;
+            }
+            let info = "Аты: " + name + "\nЖасы: " + age;
+            alert(info);
+            const res = document.getElementById("pr8-info-result");
+            res.style.display = "block";
+            res.innerHTML = `<strong>Пайдаланушы мәліметі:</strong><br>Аты: ${name}<br>Жасы: ${age}`;
+        }
+
+        function runHomeworkPicker() {
+            let selectedDate = document.getElementById("pr8-date").value;
+            let selectedColor = document.getElementById("pr8-color").value;
+            alert("Таңдалған күн: " + selectedDate + "\nТаңдалған түс: " + selectedColor);
+            
+            const card = document.getElementById("pr8-picker-card");
+            card.style.backgroundColor = selectedColor;
+            
+            const res = document.getElementById("pr8-picker-result");
+            res.style.display = "block";
+            res.textContent = "Таңдалған күн: " + selectedDate + " | Таңдалған түс: " + selectedColor;
+        }
+
+        /* ==========================================================================
+           САБАҚ №10 ФУНКЦИЯЛАРЫ ЖӘНЕ «ЖАСЫРЫН САНДЫ ТАП»
+           ========================================================================== */
+        function applyBorderColor() {
+            let col = document.getElementById("dom-color").value;
+            let box = document.getElementById("dom-demo-box");
+            box.style.borderColor = col;
+            box.textContent = "Шекара түсі динамикалық түрде мынаған өзгертілді: " + col;
+        }
+
+        // Ойын айнымалылары
+        let secretNumber = Math.floor(Math.random() * 20) + 1;
+        let attempts = 0;
+        let gameOver = false;
+
+        function makeGuess() {
+            if(gameOver) {
+                alert("Ойын аяқталды! Жаңадан бастау үшін «Қайта бастау» батырмасын басыңыз.");
+                return;
+            }
+
+            const input = document.getElementById("guess-input");
+            const val = parseInt(input.value);
+            const msgEl = document.getElementById("game-message");
+            const attEl = document.getElementById("attempt-count");
+
+            if (isNaN(val) || val < 1 || val > 20) {
+                alert("1 мен 20 аралығындағы бүтін сан енгізіңіз!");
+                return;
+            }
+
+            attempts++;
+            attEl.textContent = attempts;
+
+            if (val === secretNumber) {
+                msgEl.style.color = "#10b981";
+                msgEl.innerHTML = `🎉 <strong>Құттықтаймыз! Сіз дұрыс таптыңыз! Жасырын сан: ${secretNumber}</strong>`;
+                gameOver = true;
+                fireConfetti();
+            } else if (val < secretNumber) {
+                msgEl.style.color = "#f59e0b";
+                msgEl.innerHTML = `⬆️ <strong>Сан үлкенірек</strong> (Сіздің таңдауыңыз: ${val})`;
+            } else {
+                msgEl.style.color = "#ef4444";
+                msgEl.innerHTML = `⬇️ <strong>Сан кішірек</strong> (Сіздің таңдауыңыз: ${val})`;
+            }
+        }
+
+        function resetGuessGame() {
+            secretNumber = Math.floor(Math.random() * 20) + 1;
+            attempts = 0;
+            gameOver = false;
+            document.getElementById("guess-input").value = "";
+            document.getElementById("attempt-count").textContent = "0";
+            const msgEl = document.getElementById("game-message");
+            msgEl.style.color = "#38bdf8";
+            msgEl.textContent = "Жаңа ойын басталды! 1 мен 20 арасындағы санды табыңыз!";
+        }
+
+        function fireConfetti() {
+            const colors = ['#f43f5e', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+            for(let i = 0; i < 40; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 3500);
+            }
+        }
+
+        /* ==========================================================================
+           САБАҚ №11: ТАУАРЛАР КАТАЛОГЫ (6 ТАПСЫРМА)
+           ========================================================================== */
+        const initialProducts = [
+            { id: 1, name: "Ноутбук Lenovo IdeaPad", price: 650, icon: "fa-laptop", hot: false },
+            { id: 2, name: "Смартфон Samsung Galaxy", price: 420, icon: "fa-mobile-alt", hot: false },
+            { id: 3, name: "Сымсыз құлаққап (Headphones)", price: 150, icon: "fa-headphones", hot: false },
+            { id: 4, name: "Планшет Apple iPad", price: 580, icon: "fa-tablet-alt", hot: false },
+            { id: 5, name: "Механикалық пернетақта", price: 85, icon: "fa-keyboard", hot: false },
+            { id: 6, name: "Геймерлік тышқан", price: 45, icon: "fa-mouse", hot: false },
+            { id: 7, name: "Монитор 27' 144Hz", price: 320, icon: "fa-desktop", hot: false },
+            { id: 8, name: "Смарт-сағат Xiaomi", price: 120, icon: "fa-clock", hot: false }
+        ];
+
+        let products = JSON.parse(JSON.stringify(initialProducts));
+        let buttonColorChanged = false;
+
+        function renderProducts(itemsToRender = products) {
+            const grid = document.getElementById("products-catalog-grid");
+            grid.innerHTML = "";
+            itemsToRender.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    ${p.hot ? '<div class="hot-badge">🔥 Hot</div>' : ''}
+                    <div style="font-size:2.5rem; color:var(--primary); text-align:center; margin:14px 0;">
+                        <i class="fas ${p.icon}"></i>
+                    </div>
+                    <h4 style="color:#fff; font-size:1.1rem; margin-bottom:8px;">${p.name}</h4>
+                    <div style="font-size:1.3rem; font-weight:800; color:#10b981; margin-bottom:14px;">$${p.price}</div>
+                    <button class="btn product-btn" style="width:100%; font-size:0.85rem; padding:8px;" onclick="alert('${p.name} себетке қосылды!')">
+                        <i class="fas fa-shopping-basket"></i> Сатып алу
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 1 тапсырма: Барлық батырманың түсін өзгерту
+        function changeAllButtonsColor() {
+            const btns = document.querySelectorAll(".product-btn");
+            const newColor = buttonColorChanged ? "var(--primary)" : "#8b5cf6";
+            btns.forEach(b => {
+                b.style.backgroundColor = newColor;
+                b.style.borderColor = newColor;
+            });
+            buttonColorChanged = !buttonColorChanged;
+            showActionInfo(`1-тапсырма: Барлық сатып алу батырмаларының түсі ${buttonColorChanged ? 'күлгінге (#8b5cf6)' : 'бастапқыға'} өзгертілді!`);
+        }
+
+        // 2 тапсырма: Тауар карточкасына «🔥 Hot» жазу қосу
+        function toggleHotBadge() {
+            products.forEach(p => p.hot = !p.hot);
+            renderProducts();
+            showActionInfo("2-тапсырма: Барлық тауар карточкаларына «🔥 Hot» белгісі сәтті қосылды!");
+        }
+
+        // 3 тапсырма: showCheap - тек 300-ден арзан тауарларды көрсету
+        function showCheapProducts() {
+            const cheap = products.filter(p => p.price < 300);
+            renderProducts(cheap);
+            showActionInfo(`3-тапсырма (showCheap): 300$-дан арзан ${cheap.length} тауар сүзіліп көрсетілді.`);
+        }
+
+        // 4 тапсырма: Бағаны +50% қылып өзгерту (increasePrice)
+        function increasePricesBy50() {
+            products = products.map(p => ({
+                ...p,
+                price: Math.round(p.price * 1.5)
+            }));
+            renderProducts();
+            showActionInfo("4-тапсырма (increasePrice): Барлық тауар бағасы +50%-ға өсті!");
+        }
+
+        // 5 тапсырма: Ең қымбат тауарды экранға шығару (reduce)
+        function showMostExpensiveProduct() {
+            const mostExpensive = products.reduce((max, curr) => curr.price > max.price ? curr : max, products[0]);
+            renderProducts([mostExpensive]);
+            showActionInfo(`5-тапсырма (reduce): Ең қымбат тауар анықталды: <strong>${mostExpensive.name}</strong> — Бағасы: <strong>$${mostExpensive.price}</strong>`);
+        }
+
+        // 6 тапсырма: 500$ жоғары тауарларды бөлек көрсету
+        function showProductsOver500() {
+            const expensive = products.filter(p => p.price > 500);
+            renderProducts(expensive);
+            showActionInfo(`6-тапсырма: 500$-дан жоғары қымбат ${expensive.length} тауар бөлек экранға шығарылды.`);
+        }
+
+        function resetProductsCatalog() {
+            products = JSON.parse(JSON.stringify(initialProducts));
+            buttonColorChanged = false;
+            renderProducts();
+            document.getElementById("product-action-info").style.display = "none";
+        }
+
+        function showActionInfo(text) {
+            const el = document.getElementById("product-action-info");
+            el.style.display = "block";
+            el.innerHTML = text;
+        }
+
+        /* ==========================================================================
+           САБАҚ №11: ОБЪЕКТІГЕ БАҒЫТТАЛҒАН БАҒДАРЛАМАЛАУ (ООП)
+           ========================================================================== */
+
+        // 1-тапсырма: Мектеп жүйесі
+        class Person {
+            constructor(name) {
+                this._name = name;
+            }
+            get name() { return this._name; }
+            set name(val) { this._name = val; }
+            getInfo() { return `Аты: ${this._name}`; }
+        }
+
+        class Subject {
+            constructor(title, lessonsCount, exercisesCount) {
+                this.title = title;
+                this.lessonsCount = lessonsCount;
+                this.exercisesCount = exercisesCount;
+            }
+            getDetails() {
+                return `Пән: ${this.title} (Сабақ саны: ${this.lessonsCount}, Жаттығулар: ${this.exercisesCount})`;
+            }
+        }
+
+        class Teacher extends Person {
+            constructor(name, subjects = []) {
+                super(name);
+                this.subjects = subjects;
+            }
+            addSubject(subj) { this.subjects.push(subj); }
+            getInfo() {
+                return `Мұғалім: ${this.name}, Жүргізетін пәндері: [${this.subjects.map(s => s.title).join(', ')}]`;
+            }
+        }
+
+        class SchoolStudent extends Person {
+            constructor(name, uniqueNumber) {
+                super(name);
+                this.uniqueNumber = uniqueNumber;
+            }
+            getInfo() {
+                return `Оқушы: ${this.name} (№: ${this.uniqueNumber})`;
+            }
+        }
+
+        class Classroom {
+            constructor(identifier) {
+                this.identifier = identifier;
+                this.students = [];
+                this.teachers = [];
+            }
+            addStudent(student) { this.students.push(student); }
+            addTeacher(teacher) { this.teachers.push(teacher); }
+            getClassInfo() {
+                return `Сынып: ${this.identifier} | Оқушы саны: ${this.students.length} | Мұғалімдер саны: ${this.teachers.length}`;
+            }
+        }
+
+        function runSchoolSystemDemo() {
+            const math = new Subject("Математика", 34, 120);
+            const cs = new Subject("Информатика", 34, 90);
+
+            const teacherAigerim = new Teacher("Айгерім Маратқызы", [math, cs]);
+            const s1 = new SchoolStudent("Әлихан Нұрлан", "ID-101");
+            const s2 = new SchoolStudent("Дина Сейіт", "ID-102");
+
+            const class10A = new Classroom("10-А Сыныбы");
+            class10A.addTeacher(teacherAigerim);
+            class10A.addStudent(s1);
+            class10A.addStudent(s2);
+
+            let out = "=== 1-ТАПСЫРМА: МЕКТЕП ЖҮЙЕСІ (OOP) ===\n";
+            out += `1. Класс Classroom: ${class10A.getClassInfo()}\n`;
+            out += `2. Класс Teacher: ${teacherAigerim.getInfo()}\n`;
+            out += `3. Оқушылар: \n   - ${s1.getInfo()}\n   - ${s2.getInfo()}\n`;
+            out += `4. Пән деректері: ${cs.getDetails()}\n`;
+            document.getElementById("oop-output-console").textContent = out;
+        }
+
+        // 2-тапсырма: Human, Student, Worker
+        class Human {
+            constructor(firstName, lastName) {
+                this._firstName = firstName;
+                this._lastName = lastName;
+            }
+            get firstName() { return this._firstName; }
+            set firstName(v) { this._firstName = v; }
+            get lastName() { return this._lastName; }
+            set lastName(v) { this._lastName = v; }
+            getFullName() { return `${this._firstName} ${this._lastName}`; }
+        }
+
+        class StudentOOP extends Human {
+            constructor(firstName, lastName, mark) {
+                super(firstName, lastName);
+                this._mark = mark;
+            }
+            get mark() { return this._mark; }
+            set mark(v) { this._mark = v; }
+            getStudentInfo() { return `${this.getFullName()} — Бағасы: ${this._mark}`; }
+        }
+
+        class WorkerOOP extends Human {
+            constructor(firstName, lastName, wage, hoursWorked) {
+                super(firstName, lastName);
+                this._wage = wage;
+                this._hoursWorked = hoursWorked;
+            }
+            get wage() { return this._wage; }
+            set wage(v) { this._wage = v; }
+            get hoursWorked() { return this._hoursWorked; }
+            set hoursWorked(v) { this._hoursWorked = v; }
+
+            calculateHourlyWage() {
+                if (this._hoursWorked === 0) return 0;
+                return (this._wage / this._hoursWorked).toFixed(2);
+            }
+            getWorkerInfo() {
+                return `${this.getFullName()} — Жалақысы: $${this._wage}, Жұмыс сағаты: ${this._hoursWorked} сағ, Сағаттық жалақысы: $${this.calculateHourlyWage()}/сағ`;
+            }
+        }
+
+        function runHumanWorkerDemo() {
+            const student = new StudentOOP("Ануар", "Төле", 98);
+            const worker = new WorkerOOP("Ерлан", "Асқарұлы", 450000, 160);
+
+            let out = "=== 2-ТАПСЫРМА: HUMAN, STUDENT, WORKER ИЕРАРХИЯСЫ ===\n";
+            out += `Студент: ${student.getStudentInfo()}\n`;
+            out += `Жұмысшы: ${worker.getWorkerInfo()}\n`;
+            out += `Формула: сағаттық жалақы = жалпы жалақы (${worker.wage}) / жұмыс сағаты (${worker.hoursWorked}) = $${worker.calculateHourlyWage()}`;
+            document.getElementById("oop-output-console").textContent = out;
+        }
+
+        // 3-тапсырма: 10 студентті бағасы бойынша өсу ретімен сұрыптау
+        function sortStudentsDemo() {
+            const studentsList = [
+                new StudentOOP("Айдана", "Ермек", 85),
+                new StudentOOP("Данияр", "Нұрлан", 62),
+                new StudentOOP("Аружан", "Серік", 92),
+                new StudentOOP("Бекзат", "Әлихан", 74),
+                new StudentOOP("Дильназ", "Қайрат", 90),
+                new StudentOOP("Ерасыл", "Болат", 55),
+                new StudentOOP("Жансая", "Марат", 96),
+                new StudentOOP("Ануар", "Төле", 100),
+                new StudentOOP("Мадина", "Сейіт", 78),
+                new StudentOOP("Нұрсұлтан", "Қуаныш", 88)
+            ];
+
+            let out = "=== 3-ТАПСЫРМА: 10 СТУДЕНТТІ БАҒАСЫ БОЙЫНША ӨСУ РЕТІМЕН СҰРЫПТАУ (ASCENDING) ===\n\n";
+            out += "Сұрыптауға дейін:\n";
+            studentsList.forEach((s, i) => out += `${i + 1}. ${s.getStudentInfo()}\n`);
+
+            // array.sort() арқылы өсу ретімен
+            studentsList.sort((a, b) => a.mark - b.mark);
+
+            out += "\nСұрыпталғаннан кейін (array.sort((a,b) => a.mark - b.mark)):\n";
+            studentsList.forEach((s, i) => out += `${i + 1}. ${s.getStudentInfo()}\n`);
+
+            document.getElementById("oop-output-console").textContent = out;
+        }
+
+        // 4-тапсырма: 10 жұмысшыны жалақысы бойынша кему ретімен сұрыптау
+        function sortWorkersDemo() {
+            const workersList = [
+                new WorkerOOP("Асқар", "Төлеген", 350000, 160),
+                new WorkerOOP("Берік", "Омаров", 520000, 160),
+                new WorkerOOP("Гүлнәр", "Қалиева", 280000, 140),
+                new WorkerOOP("Дәулет", "Жұмабай", 600000, 170),
+                new WorkerOOP("Ермек", "Сағынғали", 410000, 150),
+                new WorkerOOP("Жандос", "Кәрім", 190000, 120),
+                new WorkerOOP("Зере", "Аманжол", 480000, 160),
+                new WorkerOOP("Ильяс", "Мұрат", 750000, 180),
+                new WorkerOOP("Қуаныш", "Болатов", 310000, 150),
+                new WorkerOOP("Ләйла", "Рахым", 540000, 165)
+            ];
+
+            let out = "=== 4-ТАПСЫРМА: 10 ЖҰМЫСШЫНЫ ЖАЛАҚЫСЫ БОЙЫНША КЕМУ РЕТІМЕН СҰРЫПТАУ (DESCENDING) ===\n\n";
+            out += "Сұрыптауға дейін:\n";
+            workersList.forEach((w, i) => out += `${i + 1}. ${w.getFullName()} — $${w.wage}\n`);
+
+            // array.sort() арқылы кему ретімен
+            workersList.sort((a, b) => b.wage - a.wage);
+
+            out += "\nСұрыпталғаннан кейін (array.sort((a,b) => b.wage - a.wage)):\n";
+            workersList.forEach((w, i) => out += `${i + 1}. ${w.getWorkerInfo()}\n`);
+
+            document.getElementById("oop-output-console").textContent = out;
+        }
+
+        // Бастапқы іске қосу
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
